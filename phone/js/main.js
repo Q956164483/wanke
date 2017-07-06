@@ -68,6 +68,24 @@ function AJAX(obj){
         }
     })
 }
+/*
+ * ajax公用失败回调
+ */
+function errorCallBack(xhr,erroType,error,msg,URL){
+    try{
+        appcan.window.resetBounceView(0);
+        appcan.window.resetBounceView(1);
+    }catch(e){}
+    uexWindow.closeToast();
+    closeMask();
+    checkNet(function(connectSta){
+        if(connectSta==-1){
+            uexWindow.toast(0, '5', '网络请求失败,请检查您的网络！', 3000);
+        }else{
+            uexWindow.toast(0, '5', '系统异常', 3000);
+        }
+    });
+}
 /**
  *自定义alert 
  */
@@ -149,26 +167,6 @@ function LoadTplByUrl(url, cb) {
             // cb(data);
         // }
     // });
-}
-/*
- * ajax公用失败回调
- */
-function errorCallBack(xhr,erroType,error,msg,URL){
-    
-    try{
-        appcan.window.resetBounceView(0);
-        appcan.window.resetBounceView(1);
-    }catch(e){}
-    
-    uexWindow.closeToast();
-    closeMask();
-    checkNet(function(connectSta){
-        if(connectSta==-1){
-            uexWindow.toast(0, '5', '网络请求失败,请检查您的网络！', 3000);
-        }else{
-            uexWindow.toast(0, '5', '网络繁忙，请稍后再试', 3000);
-        }
-    });
 }
 /**
  * 页面跳转统一控制
@@ -539,6 +537,21 @@ function Fmoney(s, n) {
    }  
    return t.split("").reverse().join("") + "." + r;  
 }  
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
 /**
  * 获取指定时间 thisdate 的后 addday 天 * thisdate格式为2016-03-15
  */

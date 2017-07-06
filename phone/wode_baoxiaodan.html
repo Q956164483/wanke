@@ -100,7 +100,7 @@
                  if (JSON.parse(json).multiPopSelectedIndex > -1 && JSON.parse(json).multiPopMovePercent == undefined) {
                   var data_index = JSON.parse(json).multiPopSelectedIndex;
                   sliderType.slideTo(data_index, 500, true);
-                  // $('.swiper-slide').removeClass('swiper-slide-act').eq(data_index).addClass('swiper-slide-act');
+                  $('.swiper-slide').removeClass('swiper-slide-act').eq(data_index).addClass('swiper-slide-act');
                 }
              }; 
              setTimeout(function(){

@@ -53,25 +53,12 @@
                         </div>
                     </div>
                     <div id="container" class="ub  ub-ver" style="margin-top:2.63em">
-                            <div class="pad-l28 bc-bg fon-s24 pad-t22 pad-b22">常用选择</div>
-                            <div class="ub ub-ver bc-fff">
-                                <div class="line-last-bor-0 ub ub-ver item-gongshi mag-l28 ubb bor-ce0e0e0 pad-t36 pad-b36">
-                                    <div class="tc-000 pad-b22 name">武汉有范网络科技</div>
-                                    <div class="tc-999 fon-s24">编码：<span >E1098X0</span></div>
-                                </div>
-                                <div class="line-last-bor-0 ub ub-ver item-gongshi mag-l28 ubb bor-ce0e0e0 pad-t36 pad-b36">
-                                    <div class="tc-000 pad-b22 name">武汉有范网络科技</div>
-                                    <div class="tc-999 fon-s24">编码：<span >E1098X0</span></div>
-                                </div>
-                                <div class="line-last-bor-0 ub ub-ver item-gongshi mag-l28  pad-t36 pad-b36 ubb bor-ce0e0e0">
-                                    <div class="tc-000 pad-b22 name">武汉有范网络科技</div>
-                                    <div class="tc-999 fon-s24">编码：<span >E1098X0</span></div>
-                                </div>
+                            <div id="locComPany"  class="ub ub-ver uhide">
+                                <div class="pad-l28 bc-bg fon-s24 pad-t22 pad-b22">常用选择</div>
+                                <div class="ub ub-ver bc-fff list"></div>
                             </div>
                             <div class="tag-gonshi pad-l28 bc-bg fon-s24 pad-t22 pad-b22">所有公司</div>
-                            <div class="ub ub-ver bc-fff" id="allComPany">
-                                
-                            </div>
+                            <div class="ub ub-ver bc-fff" id="allComPany"></div>
                     </div>
             </div>
         </div>
@@ -108,6 +95,7 @@
                     $("#ScrollContent").trigger("more", this);
                 });
                 $scrollbox.hide();
+                getLoc();
                 getCsCom();
             });
             $('#search').on('focus',function(){
@@ -118,7 +106,7 @@
                     $(this).parent().parent().find('.search-tips').removeClass('search-tips-move').find('.placeholder').html('搜索');
                 }
             })
-            $('#search').on('keyup change',function(){
+            $('#search').on('keyup change input',function(){
                 if($(this).val().length > 0){
                     search($(this).val());
                 }else{
@@ -166,14 +154,38 @@
                 if(isDefine(pageFrom)){
                     var $this = $(this);
                     var baoxiao_gongsi = {
-                        name: $this.attr('data-name'),
-                        num: $this.attr('data-num')
+                        companyName: $this.attr('data-name'),
+                        companyNumber: $this.attr('data-num')
                     };
+                    saveLoc(baoxiao_gongsi);
                     setLocVal('baoxiao_gongsi',json2str(baoxiao_gongsi));
                     uescript(pageFrom,'changeGongsi()');
                     winClose(-1);
                 }
             });
+        }
+        function getLoc() {
+            var locBaoxiaoGongsi = getLocVal('locBaoxiaoGongsi');
+            if (!isDefine(locBaoxiaoGongsi)) return;
+            console.log(locBaoxiaoGongsi);
+            locBaoxiaoGongsi = str2json(locBaoxiaoGongsi);
+            $('#locComPany').removeClass('uhide').find('.list').html(template('company', {list:locBaoxiaoGongsi}));
+        }
+        function saveLoc(item) {
+            var locBaoxiaoGongsi = getLocVal('locBaoxiaoGongsi');
+            var newLoc = [];
+            if (isDefine(locBaoxiaoGongsi)) {
+                locBaoxiaoGongsi = str2json(locBaoxiaoGongsi);
+            } else {
+                locBaoxiaoGongsi = [];
+            }
+            $.each(locBaoxiaoGongsi, function(index, item1){
+                if (item1.companyNumber !== item.companyNumber) {
+                    newLoc.push(item1)
+                }
+            })
+            newLoc.unshift(item);
+            setLocVal('locBaoxiaoGongsi',json2str(newLoc.slice(0,3)));
         }
     </script>
 </html>

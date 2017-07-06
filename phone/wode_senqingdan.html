@@ -90,19 +90,21 @@
                  change : function(err, res) {//标点
                  }
              });
-             $('.swiper-slide').removeClass('swiper-slide-act').eq(0).addClass('swiper-slide-act');
              uexWindow.cbOpenMultiPopover=function(opId,dataType,json){
-                 //alert(1)
                  if (JSON.parse(json).multiPopSelectedIndex > -1 && JSON.parse(json).multiPopMovePercent == undefined) {
                   var data_index = JSON.parse(json).multiPopSelectedIndex;
                   sliderType.slideTo(data_index, 500, true);
                   $('.swiper-slide').removeClass('swiper-slide-act').eq(data_index).addClass('swiper-slide-act');
-                   checkLogin(data_index)
                 }
-             }; 
-              appcan.button("#nav-left", "btn-act",function(){
+             };
+             setTimeout(function(){
+                 var tabIndex = getLocVal('tabIndex')?(+getLocVal('tabIndex')):0;
+                 appcan.window.selectMultiPopover("content", tabIndex); 
+                 $('.swiper-slide').removeClass('swiper-slide-act').eq(tabIndex).addClass('swiper-slide-act');
+             },1)
+             appcan.button("#nav-left", "btn-act",function(){
                 winClose(-1);
-            });
+             });
         });
     </script>
 </html>

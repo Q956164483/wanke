@@ -53,20 +53,9 @@
                         </div>
                     </div>
                     <div id="container" class="ub  ub-ver" style="margin-top:2.6em">
-                            <div class="tag-gonshi pad-l28 bc-bg fon-s24 pad-t22 pad-b22">常用选择</div>
-                            <div class="ub ub-ver bc-fff">
-                                <div class="line-last-bor-0 ub ub-ver item-gongshi mag-l28 ubb bor-ce0e0e0 pad-t36 pad-b36">
-                                    <div class="tc-000 pad-b22 name">部门1</div>
-                                    <div class="tc-999 fon-s24">编码：<span >E1098X0</span></div>
-                                </div>
-                                <div class="line-last-bor-0 ub ub-ver item-gongshi mag-l28 ubb bor-ce0e0e0 pad-t36 pad-b36">
-                                    <div class="tc-000 pad-b22 name">部门2</div>
-                                    <div class="tc-999 fon-s24">编码：<span >E1098X0</span></div>
-                                </div>
-                                <div class="line-last-bor-0 ub ub-ver item-gongshi mag-l28  pad-t36 pad-b36 ubb bor-ce0e0e0">
-                                    <div class="tc-000 pad-b22 name">部门3</div>
-                                    <div class="tc-999 fon-s24">编码：<span >E1098X0</span></div>
-                                </div>
+                            <div id="locBumen"  class="ub ub-ver uhide">
+                                <div class="pad-l28 bc-bg fon-s24 pad-t22 pad-b22">常用选择</div>
+                                <div class="ub ub-ver bc-fff list"></div>
                             </div>
                             <div class="tag-gonshi pad-l28 bc-bg fon-s24 pad-t22 pad-b22">所有部门</div>
                             <div id="allDep" class="ub ub-ver bc-fff"></div>
@@ -88,7 +77,7 @@
     <script>
         var comList = [];
         var pageFrom = getLocVal('pageFrom');
-        var companyNumber = '432HX02';//getLocVal('companyNumber');
+        var companyNumber = getLocVal('companyNumber');
         (function($) {
             appcan.ready(function() {
                 $("#ScrollContent").on("reload", function(ev,scrollbox){
@@ -107,6 +96,7 @@
                     $("#ScrollContent").trigger("more", this);
                 });
                 $scrollbox.hide();
+                getLoc();
                 getCsDep();
             });
             $('#search').on('focus',function(){
@@ -164,14 +154,37 @@
                 if(isDefine(pageFrom)){
                     var $this = $(this);
                     var baoxiao_bumen = {
-                        name: $this.attr('data-name'),
-                        num: $this.attr('data-num')
+                        depName: $this.attr('data-name'),
+                        depNumber: $this.attr('data-num')
                     };
+                    saveLoc(baoxiao_bumen);
                     setLocVal('baoxiao_bumen',json2str(baoxiao_bumen));
                     uescript(pageFrom,'changeBuMen()');
                     winClose(-1);
                 }
             });
+        }
+        function getLoc() {
+            var locBaoxiaoBumen = getLocVal('locBaoxiaoBumen');
+            if (!isDefine(locBaoxiaoBumen)) return;
+            locBaoxiaoBumen = str2json(locBaoxiaoBumen);
+            $('#locBumen').removeClass('uhide').find('.list').html(template('bumen', {list:locBaoxiaoBumen}));
+        }
+        function saveLoc(item) {
+            var locBaoxiaoBumen = getLocVal('locBaoxiaoBumen');
+            var newLoc = [];
+            if (isDefine(locBaoxiaoBumen)) {
+                locBaoxiaoBumen = str2json(locBaoxiaoBumen);
+            } else {
+                locBaoxiaoBumen = [];
+            }
+            $.each(locBaoxiaoBumen, function(index, item1){
+                if (item1.depNumber !== item.depNumber) {
+                    newLoc.push(item1)
+                }
+            })
+            newLoc.unshift(item);
+            setLocVal('locBaoxiaoBumen',json2str(newLoc.slice(0,3)));
         }
     </script>
 </html>

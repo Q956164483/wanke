@@ -46,14 +46,12 @@
                         <div class="ub ub-ver bc-fff mag-t32">
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0 baoxiao-gongsi">
                                 <div class="tc-000">报销公司</div>
-                                <div class="ub-f1"></div>
-                                <div class="fon-s28 gongsi">请选择公司</div>
+                                <div class="fon-s28 gongsi ub-f1 tx-r mag-l28 ut-s">请选择公司</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0 baoxiao-bumen">
                                 <div class="tc-000">报销部门</div>
-                                <div class="ub-f1"></div>
-                                <div class="fon-s28 bumen">请选择部门</div>
+                                <div class="fon-s28 bumen ub-f1 tx-r mag-l28 ut-s">请选择部门</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0 senqing-feiyongleixing">
@@ -65,7 +63,7 @@
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0">
                                 <div class="tc-000">报销金额<span class="tc-f05050">*</span></div>
                                 <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-999 tx-r baoxiao-jine amount" data-max="150"  type="tel" placeholder="最多可报150元" />
+                                <input id="amount" class="fon-s28 tc-999 tx-r baoxiao-jine" data-max="150"  type="tel" placeholder="最多可报150元" />
                                 <div class="tips-jine fon-s28 uhide">已超额度请重新填写</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
@@ -100,7 +98,7 @@
                              <div class="line-com ub ub-ac ubt bor-ce0e0e0">
                                 <div class="tc-000">预算归属日期</div>
                                 <div class="ub-f1"></div>
-                                <input id="budgetDate" class="fon-s28 tc-999 tx-r" readonly type="text" value="2017-08-06" placeholder="" />
+                                <input id="budgetDate" class="fon-s28 tc-999 tx-r" readonly type="text" value="" placeholder="请选择日期" />
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubt bor-ce0e0e0">
@@ -159,6 +157,7 @@
                 });
                 $scrollbox.hide();
                 initUserAccount();
+                initDatePicker();
             });
         })($);
         
@@ -175,7 +174,19 @@
                 }
             });
         }
-        
+        /**
+         * 初始化时间选择器
+         */
+        function initDatePicker() {
+            var thisDate = isDefine($('#budgetDate').val())? $('#budgetDate').val() : new Date().Format('yyyy-MM-dd');
+            $('#budgetDate').val(thisDate);
+            appcan.button('#budgetDate','btn-act',function(){
+                 var Adate = $('#budgetDate').val().split('-');
+                 uexControl.openDatePicker(+Adate[0], +Adate[1], +Adate[2], function(data){
+                     $('#budgetDate').val(data.year + '-' + setNum(data.month) + '-' + setNum(data.day));
+                 })
+            })
+        }
         appcan.button("#nav-left", "btn-act",function(){
             back();
         });
@@ -222,6 +233,12 @@
          * 选择报销部门
          */
         appcan.button(".baoxiao-bumen", "btn-act",function(){
+            var companyNumber = $('.gongsi').attr('data-num');
+            if (!isDefine(companyNumber)) {
+                openToast('请先选择公司',2000,1);
+                return;
+            }
+            setLocVal('companyNumber',companyNumber);
             setLocVal('pageFrom','baoxiao_xinjian');
             openNewWin('baoxiao_bumen');
         });
@@ -235,9 +252,9 @@
          */
         function changeBuMen(){
             var baoxiao_bumen = str2json(getLocVal('baoxiao_bumen'));
-            var name = baoxiao_bumen.name;
-            if(trim(name) != trim($('.bumen').html())){
-                $('.bumen').html(baoxiao_bumen.name).attr('data-num',baoxiao_gongsi.num);
+            var depNumber = baoxiao_bumen.depNumber;
+            if(depNumber != $('.bumen').attr('data-num')){
+                $('.bumen').html(baoxiao_bumen.depName).attr('data-num',baoxiao_bumen.depNumber);
             }
         }
        /**
@@ -245,9 +262,10 @@
         */
        function changeGongsi(){
             var baoxiao_gongsi = str2json(getLocVal('baoxiao_gongsi'));
-            var name = baoxiao_gongsi.name;
-            if(trim(name) != trim($('.gongsi').html())){
-                $('.gongsi').html(baoxiao_gongsi.name).attr('data-num',baoxiao_gongsi.num);
+            var companyNumber = baoxiao_gongsi.companyNumber;
+            if(companyNumber != $('.gongsi').attr('data-num')){
+                $('.gongsi').html(baoxiao_gongsi.companyName).attr('data-num',baoxiao_gongsi.companyNumber);
+                $('.bumen').html('请选择部门').attr('data-num','');
             }
         }
         /**
@@ -267,45 +285,64 @@
             openNewWin('baoxiao_congjiekuan')
         })
         function saveBizAccountBills(isSubmit) {
-            $toast({msg: '请求中...'});
+            openToast('请求中...');
             var amount = $('#amount').val();
             var cause = $('#cause').val();
             var companyNum = $('.gongsi').attr('data-num');
             var costDeptNum = $('.bumen').attr('data-num');
+            var expenseID = $('.feiyongleixing').attr('data-id');
+            var expense = $('#expense').val();
+            var budgetDate = $('#budgetDate').val();
+            if (!isDefine(companyNum)) {
+                openToast('请先选择公司',2000,1); return;
+            }
+            if (!isDefine(costDeptNum)) {
+                openToast('请先选择部门',2000,1); return;
+            }
+            if (!isDefine(expenseID)) {
+                openToast('请选择费用类型',2000,1); return;
+            }
+            if (!isDefine(amount)) {
+                openToast('请填写报销金额',2000,1); return;
+            }
             AJAX({
                 data:{
                     method: "saveBizAccountBills",
                     bizAccountBill: {
-                        "amount": amount,
-                        "isSubmit": isSubmit,
-                        "biller": getLocVal('userName'),
-                        "cause": cause,
-                        "bizAccountNum": "",
-                        "companyNum": companyNum,
-                        "costDeptNum": costDeptNum,
-                        "expenseID": "jYoAAAAFEtp45LyU",
-                        "amountStriked": "",
-                        "realAmount":"",
-                        "budgetDate": "",
-                        "expense": "",
-                        "receiveAccount": accountBank.payeeAccount
+                        "amount": amount,                              // 报销金额
+                        "isSubmit": isSubmit,                           // 是否提交 1-是 0-否
+                        "biller": getLocVal('userName'),          // 制单人编码
+                        "cause": cause,                                    // 事由
+                        "bizAccountNum": "",                          // 费用报销单编码
+                        "companyNum": companyNum,         // 公司编码
+                        "costDeptNum": costDeptNum,         // 部门编码
+                        "expenseID": expenseID,                     // 费用类型id
+                        "amountStriked": "",                            // 冲借款金额
+                        "realAmount":"",                                  // 实付金额
+                        "budgetDate": budgetDate,                // 预算归属日期(yyyy-MM-dd)
+                        "expense": expense,                            // 费用说明
+                        "receiveAccount": accountBank.payeeAccount    // 收款人账号
                     }
                 },
                 success: function(data){
                     if(data.code == 200){
-                        $popup({
-                            tpl:'./tpl/alert.html',
-                            title:'保存成功',
-                            content:'请到“个人中心/我的报销/未发K2”</br>修改或者提交',
-                            buttons:['<div class="tc-main-blue">确定</div>'],
-                            buttonCallBack:function(index,$alertContainer,e){   
-                                // console.log(e);
-                            }
-                        });
+                        if (isSubmit == 0) {
+                            $popup({
+                                tpl:'./tpl/alert.html',
+                                title:'保存成功',
+                                content:'请到“个人中心/我的报销/未发K2”</br>修改或者提交',
+                                buttons:['<div class="tc-main-blue">确定</div>'],
+                                buttonCallBack:function(index,$alertContainer,e){   
+                                    // console.log(e);
+                                }
+                            });
+                        } else {
+                            openNewWin('send_k2');
+                        }
+                        
                     }
                 }
             })
-            
         }
         /**
         * 保存
@@ -324,7 +361,7 @@
                 buttons:['否','<div class="tc-main-blue">是</div>'],
                 buttonCallBack:function(index,e){   
                     if(index == 1){
-                        openNewWin('send_k2');
+                        saveBizAccountBills(1)
                     }
                 }
             });

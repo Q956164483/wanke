@@ -109,7 +109,7 @@
         appcan.button("#nav-left", "btn-act",function(){
             winClose(-1);
         });
-        $('#search').on('keyup change',function(){
+        $('#search').on('keyup change input',function(){
             if($(this).val().length > 0){
                 search($(this).val());
             }else{
