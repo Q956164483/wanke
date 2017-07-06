@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="../css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/ui-box.css">
+        <link rel="stylesheet" href="../css/ui-base.css">
+        <link rel="stylesheet" href="../css/ui-color.css">
+        <link rel="stylesheet" href="../css/appcan.icon.css">
+        <link rel="stylesheet" href="../css/appcan.control.css">
+        <link rel="stylesheet" href="../css/sweetalert.css">
+        <link rel="stylesheet" href="../css/common.css">
+        <link rel="stylesheet" href="../css/animate.min.css">
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body class="" ontouchstart>
+        <div class="bc-bg" tabindex="0" data-control="PAGE" id="Page">
+            <div class="uh bc-head ubb bor-ce0e0e0" data-control="HEADER" id="Header">
+                <div class="ub h-header">
+                    <div class="ub ub-ac nav-btn " id="nav-left">
+                        <div class="icon-back ub-img"></div>
+                        <div class="text ub-f1 fon-s28">首页</div>
+                    </div>
+                    <h1 class="ut ub-f1 ulev-3 ut-s tx-c " tabindex="0">新建通讯费报销单</h1>
+                    <div class="nav-btn" id="nav-right">
+                        <div class="fa  fa-1g  ub-img1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" data-control="CONTENT" id="ScrollContent">
+                <div class="scrollbox">
+                    <div class="box_bounce ub ub-ver ub-pc">
+                        <div class="ub-f1"></div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-down"><span/>&nbsp;&nbsp;下拉刷新
+                        </div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-up"><span/>&nbsp;&nbsp;释放立即刷新
+                                </div>
+                        <div class="bounce_status ">
+                            <i class="fa fa-refresh fa-spin"></i>&nbsp;更新中. . .
+                        </div>
+                    </div>
+                    <div id="container" class="ub  ub-ver">
+                        <div class="ub ub-ver bc-fff mag-t32">
+                            <div class="line-com ub ub-ac ubb bor-ce0e0e0">
+                                <div class="tc-000">预算归属日期</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-999 tx-r" readonly type="text" value="2017-08-06" placeholder="" />
+                                <div class="icon-arrow-right ub-img7"> </div>
+                            </div>
+                            <div class="line-com ub ub-ac ubb bor-ce0e0e0">
+                                <div class="tc-000">报销金额<span class="tc-f05050">*</span></div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-999 tx-r baoxiao-jine" data-max="150"  type="tel" placeholder="最多可报150元" />
+                                <div class="icon-arrow-right ub-img7"> </div>
+                            </div>
+                            <div class="line-com ub ub-ac">
+                                <div class="tc-000">事由</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-999 tx-r"  value="通讯费" placeholder="" />
+                            </div>
+                        </div>
+                        
+                        <div class="ub ub-ver bc-fff mag-t32 h-line-baxiao of-y-h" id="more">
+                            <div class="line-com ub ub-ac more">
+                                <div class="tc-000">更多</div>
+                                <div class="ub-f1"></div>
+                                <div class="icon-arrow-right ub-img7 transition-0_5"></div>
+                            </div>
+                         </div>
+                         <div class="bc-fff hid-h-0 transition-0_5" id="more-baoxiao">   
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                                <div class="tc-000">报销人</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-999 tx-r"  value="周芳喜" />
+                            </div>
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0 baoxiao-gongsi">
+                                <div class="tc-000 baoxiao_gongsi">报销公司</div>
+                                <div class="ub-f1"></div>
+                                <div class="fon-s28 date">武汉万科</div>
+                                <div class="icon-arrow-right ub-img7"> </div>
+                            </div>
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0 baoxiao-bumen">
+                                <div class="tc-000 baoxiao_bumen">报销部门</div>
+                                <div class="ub-f1"></div>
+                                <div class="fon-s28 date">IT支持组</div>
+                                <div class="icon-arrow-right ub-img7"> </div>
+                            </div>
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                                <div class="tc-000">费用类型</div>
+                                <div class="ub-f1"></div>
+                                <div class="fon-s28 date">职员通讯费（含网络通讯费）</div>
+                                <div class="icon-arrow-right ub-img7"> </div>
+                            </div>
+                            <div class="ub ub-ac  ubt bor-ce0e0e0 mag-l28">
+                                <div class="tc-000 mag-t32 ">费用说明</div>
+                            </div>
+                            <div class="mag-l28 pad-r28 mag-t32 ub  ub -ver bor-ce0e0e0 ub-ac pad-b22">
+                                <textarea class="fon-s28 ub ub-f1 tc-999 baoxiao-suomin"   placeholder="费用说明" maxlength="120" onpropertychange="this.style.height = this.scrollHeight + 'px';" oninput="this.style.height = this.scrollHeight + 'px';">
+                                </textarea>
+                                <div class="tips "></div>
+                            </div>
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                                <div class="tc-000">收款人账号</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-999 tx-r"  value="48489484" />
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="h-96"></div>
+                </div>
+            </div>
+        </div>
+        <div class="ub ub-fh bc-fff ubt bor-ce0e0e0 h-96" data-control="FOOTER">
+                <div id="save" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 tc-main-blue">
+                    保存
+                </div>
+                <div class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 bc-main-blue tc-fff">
+                    发起K2
+                </div>
+        </div>
+        <!-- <div class="pop-container ub ub-ac ub-pc">
+            <div class="bg"></div>
+            <div class="alert ub ub-ver">
+                <img src=""/>
+                <div class="title ub ub-pc fon-s36">提示</div>
+                <div class="_content ub ub-pc tc-999 fon-s28">已删除啥康复科富士康放声大哭防守打法</div>
+                <div class="buttons ub bor-ce0e0e0 tc-999">
+                    <div class="ub ub-ac ub-pc ub-f1 ub-fh button bor-ce0e0e0">取消</div>
+                    <div class="ub ub-ac ub-pc ub-f1 ub-fh button bor-ce0e0e0">确定</div>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="pop-container ub ub-ac ub-pc">
+             <div class="pop-bot ub ub-ver animated fadeInUp">
+                 <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t32 pad-b22">
+                        费用类型
+                </div>
+                <div class="ub ub-ver ub-f1 ofl-y-s">
+                    <div class="line-last-bor-0 ub  item-gongshi  ubb bor-ce0e0e0 pad-t36 pad-b36 pad-l28 pad-r28 selected">
+                        <div class="ub ub-ver ub-f1">
+                            <div class="tc-000  name">武汉有范网络科技</div>
+                            <div class="ub tc-999 mag-t32">
+                                <div class="ub fon-s24 ub-f1 ub-fh">单号：<span >E1098X0</span></div>
+                                <div class="ub fon-s24 ub-f1 ub-fh">可用金额：<span class="tc-main-blue">$:1515</span></div>
+                            </div>
+                            <div class="ub tc-999 pad-t22">
+                                <div class="ub fon-s24 ub-f1 ub-fh">申请日期：<span >2017-05-06</span></div>
+                                <div class="ub fon-s24 ub-f1 ub-fh">申请金额：<span >$:1515</span></div>
+                            </div>
+                        </div>
+                        <div class="icon-selected ub-img7"> </div>
+                    </div>
+                    <div class="line-last-bor-0 ub  item-gongshi  ubb bor-ce0e0e0 pad-t36 pad-b36 pad-l28 pad-r28 selected">
+                        <div class="ub ub-ver ub-f1">
+                            <div class="tc-000  name">武汉有范网络科技</div>
+                            <div class="ub tc-999 mag-t32">
+                                <div class="ub fon-s24 ub-f1 ub-fh">单号：<span >E1098X0</span></div>
+                                <div class="ub fon-s24 ub-f1 ub-fh">可用金额：<span class="tc-main-blue">$:1515</span></div>
+                            </div>
+                            <div class="ub tc-999 pad-t22">
+                                <div class="ub fon-s24 ub-f1 ub-fh">申请日期：<span >2017-05-06</span></div>
+                                <div class="ub fon-s24 ub-f1 ub-fh">申请金额：<span >$:1515</span></div>
+                            </div>
+                        </div>
+                        <div class="icon-selected ub-img7"> </div>
+                    </div>
+                    <div class="line-last-bor-0 ub  item-gongshi  ubb bor-ce0e0e0 pad-t36 pad-b36 pad-l28 pad-r28 selected">
+                        <div class="ub ub-ver ub-f1">
+                            <div class="tc-000  name">武汉有范网络科技</div>
+                            <div class="ub tc-999 mag-t32">
+                                <div class="ub fon-s24 ub-f1 ub-fh">单号：<span >E1098X0</span></div>
+                                <div class="ub fon-s24 ub-f1 ub-fh">可用金额：<span class="tc-main-blue">$:1515</span></div>
+                            </div>
+                            <div class="ub tc-999 pad-t22">
+                                <div class="ub fon-s24 ub-f1 ub-fh">申请日期：<span >2017-05-06</span></div>
+                                <div class="ub fon-s24 ub-f1 ub-fh">申请金额：<span >$:1515</span></div>
+                            </div>
+                        </div>
+                        <div class="icon-selected ub-img7"> </div>
+                    </div>
+                    <div class="line-last-bor-0 ub  item-gongshi  ubb bor-ce0e0e0 pad-t36 pad-b36 pad-l28 pad-r28 selected">
+                        <div class="ub ub-ver ub-f1">
+                            <div class="tc-000  name">武汉有范网络科技</div>
+                            <div class="ub tc-999 mag-t32">
+                                <div class="ub fon-s24 ub-f1 ub-fh">单号：<span >E1098X0</span></div>
+                                <div class="ub fon-s24 ub-f1 ub-fh">可用金额：<span class="tc-main-blue">$:1515</span></div>
+                            </div>
+                            <div class="ub tc-999 pad-t22">
+                                <div class="ub fon-s24 ub-f1 ub-fh">申请日期：<span >2017-05-06</span></div>
+                                <div class="ub fon-s24 ub-f1 ub-fh">申请金额：<span >$:1515</span></div>
+                            </div>
+                        </div>
+                        <div class="icon-selected ub-img7"> </div>
+                    </div>
+                </div>
+             </div>
+        </div> -->
+        <div class="toast ub ub-ac ub-pc ub-ver">
+            <div class="icon-ok ub-img7 mag-b32"></div>
+            <div class="txt tc-fff">已发送至你的邮箱</div>
+        </div>
+        <script src="../js/appcan.concat.js"></script>
+        <script src="../js/common/sweetalert.min.js"></script>
+        <script src="../js/common/artTemplate.js"></script>
+        <script src="../js/main.js"></script>
+    </body>
+    <script>
+    $('#save').click(function(){
+        $alert({
+            title:'提示',
+            content:'哈哈哈哈哈哈???',
+            buttons:['取消','<div class="tc-main-blue">确定</div>'],
+            buttonCallBack:function(index){
+                alert(index)
+            }
+        });
+    })
+    
+    
+    </script>
+</html>

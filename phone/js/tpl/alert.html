@@ -1,0 +1,17 @@
+<div class="pop-container ub ub-ac ub-pc ub-img7">
+    <div class="bg"></div>
+    <div class="alert ub ub-ver alert-animate">
+        <img src=""/>
+        {{if title}}
+        <div class="title ub ub-pc fon-s36">{{title}}</div>
+        {{/if}}
+        <div class="_content ub ub-pc tc-999 fon-s28 line-h40 tx-c">{{content?content:"确定？"}}</div>
+        {{if buttons.length>0}}
+            <div class="buttons ub bor-ce0e0e0 tc-999">
+                {{each buttons as value i}}
+                    <div class="ub ub-ac ub-pc ub-f1 ub-fh button bor-ce0e0e0">{{value}}</div>
+                {{/each}}
+            </div>
+        {{/if}}
+    </div>
+</div>

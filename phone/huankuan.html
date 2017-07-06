@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/common.css">
+    </head>
+    <body class="" ontouchstart>
+        <div class="bc-bg" tabindex="0" data-control="PAGE" id="Page">
+            <div class="uh bc-head ubb bor-ce0e0e0" data-control="HEADER" id="Header">
+                <div class="ub h-header">
+                    <div class="ub ub-ac nav-btn " id="nav-left">
+                        <div class="icon-back ub-img"></div>
+                        <div class="text ub-f1 fon-s28">首页</div>
+                    </div>
+                    <h1 class="ut ub-f1 ulev-3 ut-s tx-c " tabindex="0">新建还款单</h1>
+                    <div class="nav-btn" id="nav-right">
+                        <div class="fa  fa-1g  ub-img1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" data-control="CONTENT" id="ScrollContent">
+                <div class="scrollbox">
+                    <div class="box_bounce ub ub-ver ub-pc">
+                        <div class="ub-f1"></div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-down"><span/>&nbsp;&nbsp;下拉刷新
+                        </div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-up"><span/>&nbsp;&nbsp;释放立即刷新
+                                </div>
+                        <div class="bounce_status ">
+                            <i class="fa fa-refresh fa-spin"></i>&nbsp;更新中. . .
+                        </div>
+                    </div>
+                    <div id="container" class="ub  ub-ver">
+                        <div class="ub ub-ver bc-fff mag-t32">
+                            <div class="line-com ub ub-ac ubb bor-ce0e0e0 jiekuan-leixing">
+                                <div class="tc-000">借款单</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-999 tx-r" readonly type="text" value="5455151561" placeholder="" />
+                                <div class="icon-arrow-right ub-img7"> </div>
+                            </div>
+                            <div class="line-com ub ub-ac ubb bor-ce0e0e0 jiekuan-feiyong-leixing">
+                                <div class="tc-000">费用类型</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-bbb tx-r" value="商业保险" readonly  type="tel" placeholder="" />
+                                <!-- <div class="icon-arrow-right ub-img7"> </div> -->
+                            </div>
+                            <div class="line-com ub ub-ac ubb bor-ce0e0e0">
+                                <div class="tc-000">还款金额<span class="tc-f05050">*</span></div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-999 tx-r baoxiao-jine" data-max="150"  type="tel" placeholder="最多还款1200.00" />
+                                <div class="tips-jine fon-s28 uhide">已超最多还款金额</div>
+                                <div class="icon-arrow-right ub-img7"> </div>
+                            </div>
+                            <div class="line-com ub ub-ac ">
+                                <div class="tc-000">说明<span class="tc-f05050">*</span></div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-999 tx-r" data-max="150"  type="text" placeholder="请填写" />                              
+                                <div class="icon-arrow-right ub-img7"> </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ub ub-ver bc-fff mag-t32 h-line-baxiao of-y-h" id="more">
+                            <div class="line-com ub ub-ac more tc-main-blue">
+                                <div class="">更多</div>
+                                <div class="ub-f1"></div>
+                                <div class="icon-arrow-bot-act ub-img7 transition-0_5"></div>
+                            </div>
+                         </div>
+                         <div class="bc-fff hide animated fadeIn" id="more-baoxiao">   
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0 ">
+                                <div class="tc-000">还款人</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-bbb tx-r" readonly value="周芳喜" />
+                            </div>
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                                <div class="tc-000">还款日期</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-bbb tx-r" readonly type="text" value="2017-08-06" placeholder="" />
+                                <!-- <div class="icon-arrow-right ub-img7"> </div> -->
+                            </div>
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0 jiesuanfangsi">
+                                <div class="tc-000 baoxiao_bumen">结算方式</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-999 tx-r" readonly  value="网银支付" />
+                                <div class="icon-arrow-right ub-img7"> </div>
+                            </div>
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                                <div class="tc-000 baoxiao_gongsi">收款公司</div>
+                                <div class="ub-f1"></div>
+                                <div class="fon-s28 tc-bbb">武汉万科</div>
+                            </div>
+                            
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0  soukuanzanghao">
+                                <div class="tc-000">收款账号</div>
+                                <div class="ub-f1"></div>
+                                <input class="fon-s28 tc-bbb tx-r" readonly  value="48489484" />
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="h-96"></div>
+                </div>
+            </div>
+        </div>
+        <div class="ub ub-fh bc-fff ubt bor-ce0e0e0 h-96" data-control="FOOTER">
+                <div id="save" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 tc-main-blue">
+                    保存
+                </div>
+                <div id="sendK2" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 bc-main-blue tc-fff">
+                    提交
+                </div>
+        </div>
+       
+        <script id="jiesuanfangsi" type="text/html">
+            <div class="pop-container ub ub-ac ub-pc animated fadeIn" data-close-ani="fadeOutDown">
+                 <div class="pop-bot ub ub-ver animated fadeInUp bc-bg pop-content">
+                    <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36  bc-fff">
+                            选择结算方式
+                    </div>
+                    <div class="ub ub-pc ub-ac pad-l28 pad-r28 ubb bor-ce0e0e0 pad-t36 pad-b36 jiesuan_type bc-fff selected">
+                            <div class="ub-f1 txt">网银支付</div>
+                            <div class="icon-selected ub-img7"></div>
+                    </div>
+                    <div class="ub ub-pc ub-ac pad-l28 pad-r28 pad-t36 pad-b36 jiesuan_type bc-fff">
+                            <div class="ub-f1 txt">现金</div>
+                            <div class="icon-selected ub-img7"></div>
+                    </div>
+                 </div>
+            </div>
+        </script>
+        <script src="js/appcan.concat.js"></script>
+        <script src="js/common/artTemplate.js"></script>
+        <script src="js/tpl.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+    <script>
+        (function($) {
+            appcan.ready(function() {
+                $("#ScrollContent").on("reload", function(ev,scrollbox){
+                   scrollbox.reset();
+                });
+                $("#ScrollContent").on("more", function(ev,scrollbox){
+                    scrollbox.reset();
+                });
+                var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
+                    $("#ScrollContent").trigger("reload", this);
+                }).on("onReloading",function(a) { 
+                }).on("dragToReload",function() { 
+                }).on("draging",function(status) {
+                }).on("release",function() { 
+                }).on("scrollbottom",function() { 
+                    $("#ScrollContent").trigger("more", this);
+                });
+                $scrollbox.hide();
+            });
+            function back(){
+                $popup({
+                    tpl:'tpl/alert.html',
+                    title:'确定放弃当前内容？',
+                    content:'你填写的内容还未保存',
+                    buttons:['取消','<div class="tc-main-blue">确定</div>'],
+                    buttonCallBack:function(index,e){   
+                        if(index == 1){
+                            winClose(-1);
+                        }
+                    }
+                });
+                
+            }
+            appcan.button("#nav-left", "btn-act",function(){
+                back();
+            });
+            /**
+             * 选择借款类型
+             */
+            appcan.button('.jiesuanfangsi','btn-act',function(){
+                $('body').append(template('jiesuanfangsi', {})); 
+                $('.pop-container').one('webkitAnimationEnd   animationend', function(){
+                    $(this).one('click',function(e){
+                        closePop($(this));
+                    }).find('.pop-content').on('click',function(e){
+                        e.stopPropagation();
+                    })
+                });
+                appcan.button('.jiesuan_type','btn-act',function(){
+                    var $this = $(this);
+                    var index = $(this).index();
+                    closePop($this);
+                    if(trim($this.find('.txt').html()) !== trim($('.jiesuanfangsi input').val())){
+                        $('.jiesuanfangsi input').val($this.find('.txt').html());
+                        if(trim($this.find('.txt').html()) == '现金'){
+                            $('.soukuanzanghao').addClass('uhide');
+                            $this.addClass("selected").siblings(".jiesuan_type").removeClass("selected")
+                        }else{
+                            $('.soukuanzanghao').removeClass('uhide');
+                            $this.addClass("selected").siblings(".jiesuan_type").removeClass("selected")
+                        }
+                    }
+                    //closePop($this);
+                })
+            })
+            $('.baoxiao-jine').on('keyup change',function(){  
+                var $ipt = $(this);
+                var val = inputManger.getNum($ipt.val());
+                $ipt.val(val);
+                //console.log(val);
+                if(val > 150){
+                    $ipt.val('').attr('placeholder','').parent().addClass('bor-c-warn').find('.tips-jine').removeClass('uhide').click(function(){
+                        $ipt.focus()
+                    })
+                }else{
+                    $ipt.removeClass('tc-warn').attr('placeholder','最多可报150元').parent().removeClass('bor-c-warn').find('.tips-jine').addClass('uhide')
+                }
+            })
+           /**
+            * 结算方式
+            */
+            appcan.button('#more','btn-act',function(){
+                $(this).find('.icon-arrow-bot-act').toggleClass('rotate-180');
+                $('#more-baoxiao').toggleClass('hide');
+            })
+
+            /**
+            * 保存
+            */
+            appcan.button('#save','btn-act',function(){
+                $popup({
+                    tpl:'./tpl/alert.html',
+                    title:'保存成功',
+                    content:'请到“个人中心/我的还款单”</br>修改或者提交',
+                    buttons:['<div class="tc-main-blue">确定</div>'],
+                    buttonCallBack:function(index,$alertContainer,e){   
+                        console.log(e);
+                    }
+                });
+            })
+            /**
+            * 发起K2
+            */
+           appcan.button('#sendK2','btn-act',function(){
+                $toast({
+                    tpl:'tpl/toast.html',
+                    icon:'icon-ok',
+                    msg:'已提交',
+                    time:2000
+                });
+                
+                /*
+                AJAX({
+                     url:"",
+                     method:"",
+                                    
+                })*/
+                
+            })
+           
+        })($);
+        
+    </script>
+</html>

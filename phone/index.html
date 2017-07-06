@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    
+    <head>
+        <title>
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body class="bc-bg" ontouchstart>
+        <div class="" tabindex="0" data-control="PAGE" id="Page">
+            <div class="uh bc-head-index tc-fff" data-control="HEADER" id="Header">
+                <div class="ub h-header">
+                    <div class="ub ub-ac nav-btn " id="nav-left">
+                        <div class="icon-back icon-back-white ub-img"></div>
+                        <div class="text ub-f1 fon-s28"></div>
+                    </div>
+                    <h1 class="ut ub-f1 ulev-3 ut-s tx-c " tabindex="0">易报销</h1>
+                    <div class="nav-btn" id="nav-right">
+                        <div class="icon-erji ub-img7">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" data-control="CONTENT" id="ScrollContent">
+                <div class="scrollbox">
+                    <div class="box_bounce ub ub-ver ub-pc bc-bg">
+                        <div class="ub-f1"></div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-down"><span/>&nbsp;&nbsp;下拉刷新
+                        </div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-up"><span/>&nbsp;&nbsp;释放立即刷新
+                        </div>
+                        <div class="bounce_status">
+                            <i class="fa fa-refresh fa-spin"></i>&nbsp;更新中. . .
+                        </div>
+                    </div>
+                    <div id="content ub ub-ver" >
+                        <div class="index-edu ub ub-ver ub-ac ub-pc bc-head-index">
+                            <div class="ball-bg ub-img mag-t16">
+                                <canvas></canvas>
+                            </div>
+                            <div class="ub pad-b32 pad-t32 ub-fh">
+                                <div class="ub-f1 ub ub-fh ub-ver ub-pc ub-ac ubr">
+                                    <div class="tc-fff">100.00</div>
+                                    <div class="fon-s24 mag-t16">未报销</div>
+                                </div>
+                                <div class="ub-f1 ub ub-fh ub-ver ub-pc ub-ac ubr">
+                                    <div class="tc-fff">200.00</div>
+                                    <div class="fon-s24 mag-t16">待审批</div>
+                                </div>
+                                <div class="ub-f1 ub ub-fh ub-ver ub-pc ub-ac">
+                                    <div class="tc-fff">300.00</div>
+                                    <div class="fon-s24 mag-t16">待付款</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-container bc-fff"  id="swiperIndex">
+                            <div class="swiper-wrapper pad-b22 ">
+                                <div class="swiper-slide tc-666  pad-b36">
+                                     <div data-type="baoxiao_tongxun" class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-tongxun ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">通讯费报销</div>
+                                    </div>
+                                    <div data-type="baoxiao_celiang" class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-celiang ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">车辆费报销</div>
+                                    </div>
+                                    <div data-type="baoxiao_jiaotong" class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-jiaotong  ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">交通费报销</div>
+                                    </div>
+                                    <div data-type="senqin_cucai" class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-cucai  ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">出差申请</div>
+                                    </div>
+                                    <div data-type="baoxiao_cailv"  class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-cailv  ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">差旅报销</div>
+                                    </div>
+                                    <div data-type="senqin_feiyong"  class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-feiyong  ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">费用类申请</div>
+                                    </div>
+                                    <div data-type="baoxiao_qita"  class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-qita  ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">其它费用报销</div>
+                                    </div>
+                                    <div data-type="senqin_diannao" class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-diannao  ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">电脑申请</div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide tc-666  pad-b36">
+                                     <div data-type="baoxiao_diannao"  class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-diannao-baoxiao ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">电脑报销</div>
+                                    </div>
+                                    <div data-type="jiekuan"  class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-jiekuan ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">借款单</div>
+                                    </div>
+                                    <div data-type="huankuan"  class="w-p25 fl ub ub-ver ub-ac ub-pc item-baoxiao pad-t32 mag-t16">
+                                        <div class="icon icon-huankuan ub-img"></div>
+                                        <div class="name fon-s24 umar-t mag-t16">还款单</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div class="pad-t22 pad-b22 bc-bg pad-l28 pad-r28 ub ub-ac show-more">
+                            <span class="fon-s24 ub ub-f1">预定</span>
+                        </div>
+                        <div class="yuding bc-fff">
+                            <div class="w-p33 ubb bor-ce0e0e0 fl item-yuding  ub ub-ver ub-ac ub-pc  pad-t36 pad-b36">
+                                <div class="icon icon-feiji ub-img"></div>
+                                <div class="fon-s24 umar-t mag-t16 tx-c">
+                                    机票预订
+                                    <br>携程
+                                </div>
+                            </div>
+                            <div class="w-p33 ubb bor-ce0e0e0 fl item-yuding  ub ub-ver ub-ac ub-pc  pad-t36 pad-b36">
+                                <div class="icon icon-jiudian ub-img"></div>
+                                <div class="fon-s24 umar-t mag-t16 tx-c">
+                                    酒店预订
+                                    <br>携程
+                                </div>
+                            </div>
+                            <div class="w-p33 ubb bor-ce0e0e0 fl item-yuding  ub ub-ver ub-ac ub-pc  pad-t36 pad-b36">
+                                <div class="icon icon-huoce ub-img"></div>
+                                <div class="fon-s24 umar-t mag-t16 tx-c">
+                                    火车预订
+                                    <br>携程
+                                </div>
+                            </div>
+                            <div class="w-p33  fl item-yuding  ub ub-ver ub-ac ub-pc  pad-t36 pad-b36">
+                                <div class="icon icon-feiji1 ub-img"></div>
+                                <div class="fon-s24 umar-t mag-t16 tx-c">
+                                    机票预订
+                                    <br>优行
+                                </div>
+                            </div>
+                            <div class="w-p33  fl item-yuding  ub ub-ver ub-ac ub-pc  pad-t36 pad-b36">
+                                <div class="icon icon-jiudian1 ub-img"></div>
+                                <div class="fon-s24 umar-t mag-t16 tx-c">
+                                    酒店预订
+                                    <br>优行
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="h-96 pad-t36 pad-b36"></div>
+        <div class="ub ub-fh bc-fff ubt bor-ce0e0e0 h-96 footer" data-control="FOOTER">
+                <div class="ub-f1 ub-fh ub ub-pc ub-ac bot-item act">
+                    <div class="icon-bot icon-home ub-img"></div>
+                    <div class="fon-s24 umar-l">首页</div>
+                </div>
+                <div class="ub-f1 ub-fh ub ub-pc ub-ac">
+                     <div class="ub ub-ac ub-pc uba jiyibi bc-fff">
+                         <div class="round-mask"></div>
+                         <div class="jiyibi-container bc-main-blue ub ub-ac ub-pc ub-ver">
+                             <div class="icon-jiyibi-white ub-img"></div>
+                             <div class="fon-s18 tc-fff mag-t16">记一笔</div>
+                         </div>
+                     </div>
+                </div>
+                <div class="ub-f1 ub-fh ub ub-pc ub-ac bot-item">
+                    <div class="icon-bot icon-wode ub-img"></div>
+                    <div class="fon-s24 umar-l">我的</div>
+                </div>
+        </div>
+        <script id="senqingdan" type="text/html">
+            <div class="pop-container ub animated fadeIn" data-close-ani="fadeOutDown">
+                 <div class="pop-bot ub ub-ver bc-fff animated fadeInUp pop-content">
+                     <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36">
+                            选择申请单
+                    </div>
+                    <div class="ub ub-ver ub-f1 ofl-y-s">
+                        {{if list.length>0}}
+                            <div class="line-last-bor-0 ub  item-senqingdan  ubb bor-ce0e0e0 pad-t36 pad-b36 pad-l28 pad-r28">
+                                <div class="ub ub-ver ub-f1">
+                                    <div class="tc-000  name">武汉有范网络科技</div>
+                                    <div class="ub tc-999 mag-t32">
+                                        <div class="ub fon-s24 ub-f1 ub-fh">单号：<span >E1098X0</span></div>
+                                        <div class="ub fon-s24 ub-f1 ub-fh">可用金额：<span class="tc-main-blue">$:1515</span></div>
+                                    </div>
+                                    <div class="ub tc-999 pad-t22">
+                                        <div class="ub fon-s24 ub-f1 ub-fh">申请日期：<span >2017-05-06</span></div>
+                                        <div class="ub fon-s24 ub-f1 ub-fh">申请金额：<span >$:1515</span></div>
+                                    </div>
+                                </div>
+                                <div class="icon-selected ub-img7"> </div>
+                            </div>
+                        {{/if}}
+                        {{if list.length==0}}
+                            <div class="ub ub-ver ub-pc ub-ac">
+                                <div class="icon-no-data ub-img7 mag-t32"></div>
+                                <div class="tc-999 mag-t32">没有符合条件的申请单</div>
+                                <div class="bc-main-blue ub ub-ac ub-pc tc-fff button-news-senqing">新建申请单</div>
+                            </div>
+                        {{/if}}
+                    </div>
+                 </div>
+            </div>
+        </script>
+        <script id="baoxiao_type" type="text/html">
+            <div class="pop-container ub ub-ac ub-pc animated fadeIn" data-close-ani="fadeOutDown">
+                 <div class="pop-bot ub ub-ver animated fadeInUp bc-bg pop-content">
+                    <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36 baoxiao_type bc-fff">
+                            关联申请单生成
+                    </div>
+                    <div class="ub ub-pc ub-ac  pad-t36 pad-b36 baoxiao_type bc-fff">
+                            新建生成
+                    </div>
+                    <div class="ub ub-pc ub-ac mag-t16 pad-t36 pad-b36 baoxiao_type tc-999 bc-fff">
+                            取消
+                    </div>
+                 </div>
+            </div>
+        </script>
+        <!-- 新建借款单模板 -->
+        <script id="jiekuandan" type="text/html">
+            <div class="pop-container ub animated fadeIn" data-close-ani="fadeOutDown">
+                 <div class="pop-bot ub ub-ver bc-fff animated fadeInUp pop-content">
+                     <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36">
+                            选择借款单
+                    </div>
+                    <div class="ub ub-ver ub-f1 ofl-y-s">
+                        {{if list.length>0}}
+                            <div class="line-last-bor-0 ub  item-jiekuandan  ubb bor-ce0e0e0 pad-t36 pad-b36 pad-l28 pad-r28">
+                                <div class="ub ub-ver ub-f1">
+                                    <div class="tc-000  name">144564444454</div>
+                                    <div class="ub tc-999 mag-t32">
+                                        <div class="ub fon-s24 ub-f1 ub-fh">未归还金额：<span class="tc-main-blue">1515</span></div>
+                                        <div class="ub fon-s24 ub-f1 ub-fh">借款金额：<span >1000.00</span></div>
+                                    </div>
+                                    <div class="ub tc-999 pad-t22">
+                                        <div class="ub fon-s24 ub-f1 ub-fh">借款日期：<span >2017-05-06</span></div>
+                                        <div class="ub fon-s24 ub-f1 ub-fh">承诺还款日期：<span >2017-06-06</span></div>
+                                    </div>
+                                </div>
+                                <div class="icon-selected ub-img7"> </div>
+                            </div>
+                        {{/if}}
+                        {{if list.length==0}}
+                            <div class="ub ub-ver ub-pc ub-ac">
+                                <div class="icon-no-data ub-img7 mag-t32"></div>
+                                <div class="tc-999 mag-t32">没有符合条件的借款单</div>
+                                <div class="bc-main-blue ub ub-ac ub-pc tc-fff button-news-senqing">新建借款单</div>
+                            </div>
+                        {{/if}}
+                    </div>
+                 </div>
+            </div>
+        </script>
+        <script id="baoxiao_diannao" type="text/html">
+            <div class="pop-container ub animated fadeIn" data-close-ani="fadeOutDown">
+                 <div class="pop-bot ub ub-ver bc-fff animated fadeInUp pop-content">
+                     <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36">
+                            选择电脑补助申请单
+                    </div>
+                    <div class="ub ub-ver ub-f1 ofl-y-s">
+                        {{if list.length>0}}
+                            <div class="line-last-bor-0 ub  item-diannao  ubb bor-ce0e0e0 pad-t36 pad-b36 pad-l28 pad-r28">
+                                <div class="ub ub-ver ub-f1">
+                                    <div class="tc-000  name ub ub-ac">
+                                        144564444454
+                                        <div class="ub ub-ac ub-pc tag bc-main-blue tc-fff uc-a fon-s20 mag-l28">延长补助</div>
+                                    </div>
+                                    <div class="ub tc-999 mag-t32">
+                                        <div class="ub fon-s24 ub-f1 ub-fh">可报金额：<span class="tc-main-blue">1515</span></div>
+                                        
+                                    </div>
+                                    <div class="ub tc-999 pad-t22">
+                                        <div class="ub fon-s24 ub-f1 ub-fh">申请金额：<span >6400.00</span></div>
+                                        <div class="ub fon-s24 ub-f1 ub-fh">已报金额：<span >6400.00</span></div>
+                                    </div>
+                                </div>
+                                <div class="icon-selected ub-img7"> </div>
+                            </div>
+                        {{/if}}
+                        {{if list.length==0}}
+                            <div class="ub ub-ver ub-pc ub-ac">
+                                <div class="icon-no-data ub-img7 mag-t32"></div>
+                                <div class="tc-999 mag-t32"> 没有符合条件的单据</div>
+                                <div class="tc-999 pad-t22">请到单据查询页面查看详情</div>
+                                <div class="bc-main-blue ub ub-ac ub-pc tc-fff button-news-senqing">我的电脑补助申请单</div>
+                            </div>
+                        {{/if}}
+                    </div>
+                 </div>
+            </div>
+        </script>
+        <script src="js/appcan.concat.js"></script>
+        <script src="js/common/artTemplate.js"></script>
+        <script src="js/swiper-3.4.2.min.js"></script>
+        <script src="js/tpl.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            login();
+        });
+        appcan.button('#nav-right','btn-act',function() {
+            openNewWin('wode_baozang_faqi')
+        })
+        appcan.button('.footer .bot-item','btn-act',function(){
+            var index = $(this).index();
+            if (index == 0) {
+                return
+            } else if (index == 1) {
+                
+            } else {
+                openNewWin('wode','wode.html',7)
+            }
+        })
+        var sliderType = new Swiper('#swiperIndex', {
+            pagination : '.swiper-pagination',
+            onTap:function(swiper,ele){ 
+                var clickedSlide = swiper.clickedSlide;
+                var index = $(clickedSlide).index();
+                if(isDefine(clickedSlide)){
+                    $('.swiper-slide').removeClass('swiper-slide-act').eq(index).addClass('swiper-slide-act');
+                    appcan.window.selectMultiPopover("content", index); 
+                }          
+            }
+        })
+        /**
+         * 轮播的点击
+         */
+        $('.item-baoxiao').on('click',function(e){
+            var type = $(this).attr('data-type');
+            // 三个常用报销
+            if (type === 'baoxiao_tongxun' || type === 'baoxiao_celiang' || type === 'baoxiao_jiaotong') {
+                openNewWin(type)
+            } 
+            // 出差申请
+            else if (type === 'senqin_cucai') {
+                $toast({msg:'敬请期待', time:2000})
+            } 
+            // 差旅报销
+            else if (type === 'baoxiao_cailv') {
+                $toast({msg:'敬请期待', time:2000})
+            } 
+            // 费用申请
+            else if (type === 'senqin_feiyong') {
+                openNewWin('senqing')
+            }
+            // 其他报销
+            else if (type === 'baoxiao_qita') {
+                createBaoxiao()
+            }
+            // 电脑申请
+            else if (type === 'senqin_diannao') {
+                openNewWin('senqing_diannao')
+            }
+            // 电脑报销
+            else if (type === 'baoxiao_diannao') {
+                createBaoxiaoDiannao()
+            }
+            else if (type === 'jiekuan') {
+                openNewWin('jiekuan')
+            }
+            else if (type === 'huankuan') {
+                createHuankuan()
+            }
+        })
+        
+        var Aurl_bao_xiao = ['baoxiao_tongxun','baoxiao_jiaotong','baoxiao_celiang'];
+        appcan.button('.baoxiao-cangyong','btn-act',function(){
+            var index = $(this).index();
+            openNewWin(Aurl_bao_xiao[index])
+        })
+        /**
+         * 其他报销新建
+         */
+        function createBaoxiao() {
+            $('body').append(template('baoxiao_type', {}));
+            $('.pop-container').one('webkitAnimationEnd   animationend', function(){
+                $(this).one('click',function(e){
+                    closePop($(this));
+                }).find('.pop-content').on('click',function(e){
+                    e.stopPropagation();
+                })
+            });
+            appcan.button('.baoxiao_type','ani-act',function(){
+                var $this = $(this);
+                var index = $(this).index();
+                if(index == 1){
+                    closePop($this);
+                    openNewWin('baoxiao_xinjian');
+                }else if(index == 0){
+                    closePop($this,function(){
+                        selectSenqindan();
+                    });
+                }else{
+                    closePop($this);
+                }
+            })
+        }
+        /**
+         * 选择申请单
+         */
+        function selectSenqindan(){
+            var list = (Math.floor(Math.random()*10)%2 === 0)?[]:[1];
+            $('body').append(template('senqingdan', {list:list}));
+            $('.pop-container').one('click',function(e){
+                closePop($(this));
+            }).find('.pop-content').on('click',function(e){
+                e.stopPropagation();
+            })
+            //* 新建申请单
+            appcan.button('.button-news-senqing','btn-act',function(){
+                closePop($(this));
+                openNewWin('senqing');
+            })
+            //* 新建关联了申请单的报销单
+            appcan.button('.item-senqingdan','btn-act',function(){
+                var $this = $(this);
+                $this.parent().find('.item-senqingdan').removeClass('selected');
+                $this.addClass('selected');
+                closePop($this);
+                openNewWin('baoxiao_guanlian');
+            })
+        }
+        /**
+         * 新建还款单
+         */
+        function createHuankuan() {
+            var list = (Math.floor(Math.random()*10)%2 === 0)?[]:[1];
+            $('body').append(template('jiekuandan', {list:list}));
+            $('.pop-container').one('webkitAnimationEnd   animationend', function(){
+                $(this).one('click',function(e){
+                    closePop($(this));
+                }).find('.pop-content').on('click',function(e){
+                    e.stopPropagation();
+                })
+            });
+            //* 新建借款单
+            appcan.button('.button-news-senqing','btn-act',function(){
+                closePop($(this));
+                openNewWin('jiekuan');
+            })
+            //* 新建关联了申请单的报销单
+            appcan.button('.item-jiekuandan','btn-act',function(){
+                var $this = $(this);
+                $this.parent().find('.item-jiekuandan').removeClass('selected');
+                $this.addClass('selected');
+                closePop($this);
+                openNewWin('huankuan');
+            })
+        }
+        /**
+         * 新建电脑报销
+         */
+        function createBaoxiaoDiannao() {
+            var list = (Math.floor(Math.random()*10)%2 === 0)?[]:[1];
+            $('body').append(template('baoxiao_diannao', {list:list}));
+            $('.pop-container').one('webkitAnimationEnd   animationend', function(){
+                $(this).one('click',function(e){
+                    closePop($(this));
+                }).find('.pop-content').on('click',function(e){
+                    e.stopPropagation();
+                })
+            });
+            appcan.button('.button-news-senqing','btn-act',function(){
+                closePop($(this));
+            })
+            //* 新建关联了申请单的报销单
+            appcan.button('.item-diannao','btn-act',function(){
+                var $this = $(this);
+                $this.parent().find('.item-diannao').removeClass('selected');
+                $this.addClass('selected');
+                closePop($this);
+                openNewWin('baoxiao_diannao');
+            })
+        }
+        function login(){
+            $toast({msg:'初始化中...'})
+            AJAX({
+                url:'',
+                data:{
+                    method: "loginEAS",
+                    userName: "sysWS",
+                    password:"sysWS",
+                    slnName:'eas',
+                    dcName:'eastest',
+                    language:'L2',
+                    dbType:1
+                },
+                success: function(data){
+                    if(data.code == 200){
+                        setLocVal('userNum','liuk15')
+                        getAccountBank('liuk15')
+                    }
+                }
+            })
+        }
+        function getAccountBank(userNum) {
+            AJAX({
+                url:'',
+                data:{
+                    method: "getAccountBank",
+                    userNum: "liuk15",
+                },
+                success: function(data){
+                    if(data.code == 200){
+                        setLocVal('accountBank',json2str(data))
+                    }
+                }
+            })
+        }
+    </script>
+</html>

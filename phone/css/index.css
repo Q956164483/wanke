@@ -1,0 +1,302 @@
+.bc-head-index{
+    background: -webkit-gradient(linear,left top,right top,from(#3c96f0), to(#38cdeb));
+}
+.bc-head-wode{
+    background: -webkit-gradient(linear,left,right,from(#38cdeb), to(#3c96f0));
+}
+.index-edu{
+    color:rgba(255,255,255,.4)
+}
+.ball-bg{
+    background-image: url('img/bg-ball.png');
+    width:9.7em;
+    height:9.75em;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets{
+    bottom: .5em !important;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+  width:.5em;
+  height:.5em;
+  margin:0 .5em;
+  border-radius: 50%;
+}
+.item-baoxiao .icon{
+    width:2.8125em;
+    height:2.8125em;
+    background-color:#DDD;
+    border-radius:50%;
+}
+/*耳机*/
+.icon-erji{
+    width:1.375em;
+    height:1.46875em;
+    background-image: url('img/icon_erji.png') !important;
+}
+/*底部图标*/
+.bot-item{
+    color:#bababa;
+}
+.bot-item.act{
+    color:#38acff;
+}
+.jiyibi{
+    height:3.75em;
+    width:3.75em;
+    border-radius:50%;
+    border:1px solid #e0e0e0;
+    margin-top:-.7em;
+}
+.round-mask{
+    width:4em;
+    top:.69em;
+    height:3em;
+    position:absolute;
+    left:-.12em;
+    background-color:#FFF;
+}
+.jiyibi-container{
+    width:2.75em;
+    height:2.75em;
+    border-radius:50%;
+}
+.icon-jiyibi-white{
+    width:1.09em;
+    height:1.09em;
+    background-image: url('img/icon_jiyibi_white.png') !important;
+}
+.icon-bot{
+    width:1.375em;
+    height:1.375em;
+}
+.icon-home{
+    background-image: url('img/icon_home.png') !important;
+}
+.bot-item.act .icon-home{
+    background-image: url('img/icon_home_act.png') !important;
+}
+.icon-wode{
+    background-image: url('img/icon_wode.png') !important;
+}
+.bot-item.act .icon-wode{
+    background-image: url('img/icon_wode_act.png') !important;
+}
+.icon-tongxun{
+    background-image: url('img/icon_tongxun.png')
+}
+.icon-celiang{
+    background-image: url('img/icon_celiang.png')
+}
+.icon-jiaotong{
+     background-image: url('img/icon_jiaotong.png')
+}
+.icon-cucai{
+     background-image: url('img/icon_cucai.png')
+}
+.icon-cailv{
+     background-image: url('img/icon_cailv.png')
+}
+.icon-feiyong{
+     background-image: url('img/icon_feiyong.png')
+}
+.icon-qita{
+     background-image: url('img/icon_qita.png')
+}
+.icon-diannao{
+     background-image: url('img/icon_diannao.png')
+}
+.icon-diannao-baoxiao{
+     background-image: url('img/icon_diannao_baoxiao.png')
+}
+.icon-jiekuan{
+     background-image: url('img/icon_jiekuan.png')
+}
+.icon-huankuan{
+     background-image: url('img/icon_huankuan.png')
+}
+/*预定*/
+.yuding{}
+.item-yuding{
+    width:-webkit-calc(33.33% - 1px);
+    width:calc(33.33% - 1px);
+    border-right:1px solid #E0E0E0;
+}
+.item-yuding:nth-of-type(3n){
+    border-right: 1px solid rgba(0,0,0,0)
+}
+.item-yuding .icon{
+    width:1.75em;
+    height:1.75em;
+}
+.icon-feiji{
+    background-image: url('img/icon_feiji.png')
+}
+.icon-feiji1{
+    background-image: url('img/icon_feiji1.png')
+}
+.icon-jiudian{
+    background-image: url('img/icon_jiudian.png')
+}
+.icon-jiudian1{
+    background-image: url('img/icon_jiudian1.png')
+}
+.icon-huoce{
+    background-image: url('img/icon_huoce.png')
+}
+
+/***我的****/
+.xinyong{
+    height:1.6875em;
+    border-top-left-radius:1.6875em;
+    border-bottom-left-radius:1.6875em;
+    background-color:rgba(255,255,255,.5);
+}
+.xinyong .icon-start{
+    width:.75em;
+    height:.75em;
+}
+.hw-notk2{
+    width:1.5em;
+    height:1.5625em;
+    overflow: visible;
+}
+.hw-notk2 .nums{
+    height:1.4em;
+    padding-left:.5em;
+    padding-right:.5em;
+    font-size:.625em;
+    border-radius:1em;
+    background-color:#f05050;
+    color:#FFF;
+    margin-left:1.5em;
+    margin-top:-.5em;
+}
+.icon-notk2{
+    background-image: url('img/icon_notk2.png')
+}
+.icon-senpizong{
+    background-image: url('img/icon_senpizong.png')
+}
+.icon-daifukuan{
+    background-image: url('img/icon_daifukuan.png')
+}
+.icon-yifukuan{
+    background-image: url('img/icon_yifukuan.png')
+}
+.icon-daipinjia{
+    background-image: url('img/icon_daipinjia.png')
+}
+.hw-wode-edu{
+    width:1.625em;
+    height:1.625em;
+}
+.icon-wode-edu{
+    background-image: url('img/icon_wode_edu.png')
+}
+.icon-wode-zanghu{
+    background-image: url('img/icon_wode_zanghu.png')
+}
+.icon-wode-daibaoxiao{
+    background-image: url('img/icon_wode_daibaoxiao.png')
+}
+.icon-wode-zangdan{
+    background-image: url('img/icon_wode_zangdan.png')
+}
+.icon-wode-jiyibi{
+    background-image: url('img/icon_wode_jiyibi.png')
+}
+.icon-wode-yudin{
+    background-image: url('img/icon_wode_yudin.png')
+}
+.icon-wode-dayin{
+    background-image: url('img/icon_wode_dayin.png')
+}
+.icon-wode-kaipiao{
+    background-image: url('img/icon_wode_kaipiao.png')
+}
+.icon-wode-cailv{
+    background-image: url('img/icon_wode_cailv.png')
+}
+.icon-danju-tongxun{
+    background-image: url('img/icon_danju_tongxun.png')
+}
+.icon-danju-celiang{
+    background-image: url('img/icon_danju_celiang.png')
+}
+.icon-danju-jiaotong{
+    background-image: url('img/icon_danju_jiaotong.png')
+}
+.icon-danju-cailv{
+    background-image: url('img/icon_danju_cailv.png')
+}
+.icon-danju-cucai{
+    background-image: url('img/icon_danju_cucai.png')
+}
+.icon-danju-sixiang{
+    background-image: url('img/icon_danju_sixiang.png')
+}
+.icon-danju-wuhetongfukuan{
+    background-image: url('img/icon_danju_wuhetongfukuan.png')
+}
+.icon-danju-hetongfukuan{
+    background-image: url('img/icon_danju_hetongfukuan.png')
+}
+.icon-danju-hetong{
+    background-image: url('img/icon_danju_hetong.png')
+}
+.icon-danju-jiekuan{
+    background-image: url('img/icon_danju_jiekuan.png')
+}
+/*******单据查询*******/
+/*申请类*/
+.icon-wode-senqin-cucai{
+    background-image: url('img/icon_wode_senqin_cucai.png')
+}
+.icon-wode-senqin-diannao{
+    background-image: url('img/icon_wode_senqin_diannao.png')
+}
+.icon-wode-senqin-feiyong{
+    background-image: url('img/icon_wode_senqin_feiyong.png')
+}
+.icon-wode-senqin-sixiang{
+    background-image: url('img/icon_wode_senqin_sixiang.png')
+}
+/*报销类*/
+.icon-wode-baoxiao-cailv{
+    background-image: url('img/icon_wode_baoxiao_cailv.png')
+}
+.icon-wode-baoxiao-celiang{
+    background-image: url('img/icon_wode_baoxiao_celiang.png')
+}
+.icon-wode-baoxiao-diannao{
+    background-image: url('img/icon_wode_baoxiao_diannao.png')
+}
+.icon-wode-baoxiao-feiyong{
+    background-image: url('img/icon_wode_baoxiao_feiyong.png')
+}
+.icon-wode-baoxiao-hetongfukuan{
+    background-image: url('img/icon_wode_baoxiao_hetongfukuan.png')
+}
+.icon-wode-baoxiao-jiaotong{
+    background-image: url('img/icon_wode_baoxiao_jiaotong.png')
+}
+.icon-wode-baoxiao-tongxun{
+    background-image: url('img/icon_wode_baoxiao_tongxun.png')
+}
+.icon-wode-baoxiao-wuhetongfukuan{
+    background-image: url('img/icon_wode_baoxiao_wuhetongfukuan.png')
+}
+/*合同类*/
+.icon-wode-hetong{
+    background-image: url('img/icon_wode_hetong.png')
+}
+.icon-wode-hetongjiesuan{
+    background-image: url('img/icon_wode_hetongjiesuan.png')
+}
+/*借/还款类*/
+.icon-wode-jiekuan{
+    background-image: url('img/icon_wode_jiekuan.png')
+}
+.icon-wode-huankuan{
+    background-image: url('img/icon_wode_huankuan.png')
+}

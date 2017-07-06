@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/common.css">
+    </head>
+    <body class="" ontouchstart>
+        <div class="bc-bg" tabindex="0" data-control="PAGE" id="Page">
+            <div class="uh bc-head ubb bor-ce0e0e0" data-control="HEADER" id="Header">
+                <div class="ub h-header">
+                    <div class="ub ub-ac nav-btn " id="nav-left">
+                        <div class="icon-back ub-img"></div>
+                        <div class="text ub-f1 fon-s28">返回</div>
+                    </div>
+                    <h1 class="ut ub-f1 ulev-3 ut-s tx-c " tabindex="0">评价</h1>
+                    <div class="nav-btn" id="nav-right">
+                        <div class="fa  fa-1g  ub-img1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="" data-control="CONTENT" id="ScrollContent">
+                <div class="scrollbox">
+                    <div class="box_bounce ub ub-ver ub-pc">
+                        <div class="ub-f1"></div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-down"><span/>&nbsp;&nbsp;下拉刷新
+                        </div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-up"><span/>&nbsp;&nbsp;释放立即刷新
+                                </div>
+                        <div class="bounce_status ">
+                            <i class="fa fa-refresh fa-spin"></i>&nbsp;更新中. . .
+                        </div>
+                    </div>
+                    <div id="container" class="ub  ub-ver">
+                        <div class="ub ub-ver pad-t36 pad-b36 pad-l28 bc-fff mag-t32">
+                            <div class="ub  ub-ac  pad-b36">
+                                <div class="icon-tips1 ub-img7 mag-r14"></div>
+                                <div class="tc-333">你的0555645报销单共享审批完成。</div>
+                            </div>
+                            <div class="ub ub-ac h-96 ub-pc  mag-t36 fon-s28">
+                                <div class="tips">亲，给个评价吧</div>
+                            </div>
+                            <div class="ub start-list ub-pc pad-t36 pad-b36">
+                                <div class="icon-start ub-img7 mag-l36 animated"></div>
+                                <div class="icon-start ub-img7 mag-l36 animated"></div>
+                                <div class="icon-start ub-img7 mag-l36 animated"></div>
+                                <div class="icon-start ub-img7 mag-l36 animated"></div>
+                                <div class="icon-start ub-img7 mag-l36 animated"></div>
+                            </div>
+                        </div>
+                        <div onclick="showPop()" class="ub ub-ac  bc-fff mag-t32 pad-t32 pad-b32 pad-l28 pad-r28 uhide yuanyin animated fadeIn">
+                            <div class="tc-000">不满意原因</div>
+                            <div class="ub-f1"></div>
+                            <input class="fon-s28 tc-999 tx-r"  readonly type="text" value="服务态度" placeholder="" />
+                            <div class="icon-arrow-right ub-img7 mag-l28"> </div>
+                        </div>
+                        <textarea class="bc-fff mag-t32 pad-l28 pad-t22 pad-b22 pad-r28" placeholder="请填写评价内容" onfocus="this.placeholder=''" onblur="this.placeholder='请填写评价内容'" name="" rows="10"></textarea>
+                   </div> 
+                    <div class="h-96"></div>
+                </div>
+            </div>
+        </div>
+        <div class="ub ub-fh bc-fff ubt bor-ce0e0e0 h-96 " data-control="FOOTER">
+                <div id="submit" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 bc-main-blue tc-fff opa_5">
+                    提交
+                </div>
+        </div>
+        <script id="pinjia" type="text/html">
+            <div class="pop-container ub ub-ac ub-pc animated fadeIn" data-close-ani="fadeOutDown">
+                 <div class="pop-bot ub ub-ver animated fadeInUp bc-bg pop-content">
+                    <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36 baoxiao_type bc-fff">
+                            审批时效
+                    </div>
+                    <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36 baoxiao_type bc-fff">
+                            专业态度
+                    </div>
+                    <div class="ub ub-pc ub-ac  pad-t36 pad-b36 baoxiao_type bc-fff">
+                            服务水平
+                    </div>
+                    <div class="ub ub-pc ub-ac mag-t16 pad-t36 pad-b36 baoxiao_type tc-999 bc-fff">
+                            取消
+                    </div>
+                 </div>
+            </div>
+        </script>
+        <script src="js/appcan.concat.js"></script>
+        <script src="js/common/artTemplate.js"></script>
+        <script src="js/tpl.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+    <script>
+        (function($) {
+            appcan.ready(function() {
+                $("#ScrollContent").on("reload", function(ev,scrollbox){
+                   scrollbox.reset();
+                });
+                $("#ScrollContent").on("more", function(ev,scrollbox){
+                    scrollbox.reset();
+                });
+                var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
+                    $("#ScrollContent").trigger("reload", this);
+                }).on("onReloading",function(a) { 
+                }).on("dragToReload",function() { 
+                }).on("draging",function(status) {
+                }).on("release",function() { 
+                }).on("scrollbottom",function() { 
+                    $("#ScrollContent").trigger("more", this);
+                });
+                $scrollbox.hide();
+            });
+            
+        })($);
+        $('.start-list .icon-start').on('touchstart mousemove',function(){
+            var $index = $(this).index();
+            $('.start-list .icon-start').each(function(index,item){
+                if(index>$index){
+                    $(item).removeClass('act  ')
+                } else {
+                    $(item).addClass('act')
+                }
+            })
+            $('#submit').removeClass('opa_5');
+            if($index<2){
+                $('.tips').html('不满意').addClass('tc-yellow fon-s36');
+                $('.yuanyin').removeClass('uhide')
+            } else{
+                $('.tips').html('满意').addClass('tc-yellow fon-s36')
+                $('.yuanyin').addClass('uhide')
+            }
+        })
+        function showPop(){
+            $('body').append(template('pinjia', {}));
+            $('.pop-container').one('webkitAnimationEnd   animationend', function(){
+                $(this).one('click',function(e){
+                    closePop($(this));
+                }).find('.pop-content').on('click',function(e){
+                    e.stopPropagation();
+                })
+            });
+            appcan.button('.baoxiao_type','ani-act',function(){
+                var $this = $(this);
+                var index = $(this).index();
+                if(index  < 3){
+                    $('.yuanyin').find('input').val(trim($(this).html()))
+                }
+                closePop($this);
+            })
+        }
+        appcan.button("#nav-left", "btn-act",function(){
+            winClose(-1);
+        });
+        /**
+         * 选择费用类型
+         */
+        appcan.button(".zihang", "btn-act",function(){
+            openNewWin('wode_zanghu_zihang');
+        });
+        /**
+        * 保存
+        */
+        appcan.button('#submit','btn-act',function(){
+            $popup({
+                tpl:'tpl/print.html',
+                code:'494941481080E9229',
+                buttonCallBack:function(index,e){   
+                    if($(e.target).hasClass('submit')){
+                        closePop($(e.target),function(){
+                            $toast({
+                                tpl:'tpl/toast.html',
+                                icon:'icon-ok',
+                                msg:'已发送至你的邮箱',
+                                time:2000
+                            })
+                        });
+                        
+                    }
+                }
+            });
+        })
+        /**
+        * 发起K2
+        */
+    </script>
+</html>

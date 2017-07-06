@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    
+    <head>
+        <title>
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/common.css">
+        <style type="text/css">
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+            canvas {
+                background-color:rgba(0,0,0,0);
+                margin:1em auto;
+                border:1px solid red;
+                margin-bottom:0;
+            }
+        </style>
+    </head>
+    <body class="" ontouchstart>
+        <div class="bc-bg" tabindex="0" data-control="PAGE" id="Page">
+            <div class="uh bc-sixiang ubb bor-ce0e0e0 pad-b22" data-control="HEADER" id="Header">
+                <div class="ub h-header tc-fff">
+                    <div class="ub ub-ac nav-btn " id="nav-left">
+                        <div class="icon-back icon-back-white ub-img"></div>
+                        <div class="text ub-f1 fon-s28  tc-fff">个人中心</div>
+                    </div>
+                    <h1 class="ut ub-f1 ulev-3 ut-s tx-c " tabindex="0">个人信用</h1>
+                    <div class="nav-btn" id="nav-right">
+                        <div class="fa  fa-1g  ub-img1"></div>
+                    </div>
+                </div>
+                <div class="container-canvas ub ub-ac ub-pc ub-ver">
+                        <canvas id="canvas" width="400" height="400" data-score='600'></canvas>
+                        <div class="ub">
+                            <div class="ub-f1 uba tc-fff uc-a1 pad-l60 pad-r60 pad-t22 pad-b22 mag-r36">晒晒分</div>
+                            <div class="ub-f1 uba tc-fff uc-a1 pad-l60 pad-r60 pad-t22 pad-b22 mag-l36">了解分</div>
+                        </div>
+                </div>
+            </div>
+            <div  data-control="CONTENT" id="ScrollContent">
+                <div class="scrollbox">
+                    <div class="box_bounce ub ub-ver ub-pc">
+                        <div class="ub-f1"></div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-down"><span/>&nbsp;&nbsp;下拉刷新
+                        </div>
+                        <div class="bounce_status">
+                            <span class="fa fa-arrow-up"><span/>&nbsp;&nbsp;释放立即刷新
+                                </div>
+                        <div class="bounce_status ">
+                            <i class="fa fa-refresh fa-spin"></i>&nbsp;更新中. . .
+                        </div>
+                    </div>
+                    <div id="container" class="ub  ub-ver">
+                        <div class="pad-t22 pad-b22 pad-l28 pad-r28 ub ub-ac show-more">
+                            <span class="fon-s24 ub ub-f1">信用日志</span>
+                        </div>
+                        <div class="ub ub-ver bc-fff pad-l28 pad-r28 pad-t36 pad-b36 tc-333">
+                                <div class="progress-item act ub mag-l28 mag-r28">
+                                    <div class="ub ub-ver line">
+                                        <div class="line-t"></div>
+                                        <div class="line-b ub-f1">
+                                            <div class="round ub ub-ac ub-pc">
+                                                <div class="center"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pad-t22 pad-b22 ub ub-ver ub-f1 bc-fff tc-999 ubb bor-ce0e0e0">
+                                        <div class="tit tc-333 pad-b22">B级</div>
+                                        <div class="time fon-s28 pad-b22">打开页面报错系统异常，请检查一下</div>
+                                        <div class="time fon-s24 ">处理时间：2017-03-05</div>
+                                    </div>
+                                </div>
+                                <div class="progress-item  ub mag-l28 mag-r28">
+                                    <div class="ub ub-ver line">
+                                        <div class="line-t"></div>
+                                        <div class="line-b ub-f1">
+                                            <div class="round ub ub-ac ub-pc">
+                                                <div class="center"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pad-t22 pad-b22 ub ub-ver ub-f1 bc-fff tc-999 ubb bor-ce0e0e0">
+                                        <div class="tit tc-333 pad-b22">B级</div>
+                                        <div class="time fon-s28 pad-b22">打开页面报错系统异常，请检查一下</div>
+                                        <div class="time fon-s24 ">处理时间：2017-03-05</div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div> 
+                    <div class="h-96"></div>
+                </div>
+            </div>
+        </div>
+        <div class="ub ub-fh bc-fff ubt bor-ce0e0e0 h-96" data-control="FOOTER">
+                <div id="submit" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 bc-main-blue tc-fff">
+                    确定
+                </div>
+        </div>
+        <script src="js/appcan.concat.js"></script>
+        <script src="js/common/artTemplate.js"></script>
+        <script src="js/tpl.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+     <script>
+     appcan.ready(function() {
+        var scale = document.body.offsetWidth/750;
+        var Obj = {
+            title:['A级', 'B级', 'C级', 'D级'],
+            desc:['信用较差','信用中等','信用良好','信用优秀']
+        }
+        initCanvas(scale,Obj,2);
+        $('#container').css({
+            'margin-top':$('#Header').offset().height-$('.h-header').offset().height+'px'
+        })
+        $("#ScrollContent").on("reload", function(ev,scrollbox){
+           scrollbox.reset();
+        });
+        $("#ScrollContent").on("more", function(ev,scrollbox){
+            scrollbox.reset();
+        });
+        var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
+            $("#ScrollContent").trigger("reload", this);
+        }).on("onReloading",function(a) { 
+        }).on("dragToReload",function() { 
+        }).on("draging",function(status) {
+        }).on("release",function() { 
+        }).on("scrollbottom",function() { 
+            $("#ScrollContent").trigger("more", this);
+        });
+        $scrollbox.hide();
+    });
+    
+    function initCanvas(scale,obj,level){
+        var canvas = document.getElementById('canvas');
+        canvas.width = 400*scale;
+        canvas.height = (400-50)*scale;
+        var ctx = canvas.getContext('2d');
+        var cWidth = canvas.width 
+        var cHeight = canvas.height 
+        var stage = obj.title;
+        //半径
+        var radius = 190*scale
+        var deg0 = Math.PI / 9;
+        var deg1 = 80*(Math.PI/180)
+        var dot = new Dot();
+        var dotSpeed = 0.03;
+        var angle = 0;
+        (function drawFrame() {
+            ctx.save();
+            ctx.clearRect(0, 0, cWidth, cHeight);
+            ctx.translate(cWidth / 2, (cHeight+50) / 2);
+            ctx.rotate(7.5 * deg0);
+            dot.x = radius * Math.cos(angle);
+            dot.y = radius * Math.sin(angle);
+            if(angle < level*deg1) {
+                angle += dotSpeed;
+                console.log(1)
+                window.requestAnimationFrame(drawFrame);
+            } else {
+                
+            }
+            dot.draw(ctx);
+    
+            ctx.save();
+            ctx.beginPath();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
+            ctx.arc(0, 0, radius, 0, angle, false);
+            ctx.stroke();
+            ctx.restore();
+            
+    
+            // ctx.save(); //中间刻度层
+            // ctx.beginPath();
+            // ctx.strokeStyle = 'rgba(255, 255, 255, .2)';
+            // ctx.lineWidth = 10;
+            // ctx.arc(0, 0, 135, 0, 11 * deg0, false);
+            // ctx.stroke();
+            // ctx.restore();
+    
+            ctx.save(); 
+            // 刻度线
+            for(var i = 0; i < 4; i++) {
+                ctx.beginPath();
+                ctx.lineWidth = 2
+                ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
+                ctx.moveTo(180*scale, 0);
+                ctx.lineTo(160*scale, 0);
+                ctx.stroke();
+                ctx.rotate(deg1);
+            }
+            ctx.restore();
+    
+            ctx.save(); 
+            // 细分刻度线
+            for(i = 0; i < 30; i++) {
+                if(i % 10 !== 0) {
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
+                    ctx.moveTo(170*scale, 0);
+                    ctx.lineTo(160*scale, 0);
+                    ctx.stroke();
+                }
+                ctx.rotate(deg1 / 10);
+            }
+            ctx.restore();
+    
+            ctx.save(); //分数段
+            ctx.rotate(Math.PI / 2 );
+            for(i = 0; i < 4; i++) {
+                ctx.fillStyle = 'rgba(255, 255, 255, .4)';
+                ctx.font = 16*scale+'px Microsoft yahei';
+                ctx.textAlign = 'center';
+                ctx.fillText(stage[i], 0, -(135*scale));
+                ctx.rotate(deg1);
+            }
+            ctx.restore();
+            ctx.save();
+                //信用阶段及评估时间文字
+            ctx.rotate(10.5* deg0);
+            ctx.fillStyle = '#fff';
+            ctx.font = 24*scale+'px Microsoft yahei';
+            ctx.textAlign = 'center';
+            
+            ctx.fillText(obj.desc[level], 0, -60*scale);
+            
+            ctx.font = 60*scale+'px Microsoft yahei';
+            ctx.fillText(stage[level],0,20*scale)
+            
+            
+            ctx.fillStyle = 'rgba(255,255,255,.6)';
+            ctx.font = 20*scale+'px Microsoft yahei';
+            ctx.fillText('评估日期:2017-06-29', 0, 65*scale);
+            ctx.restore();
+    
+            // ctx.save(); //最外层轨道
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(255, 255, 255, .5)';
+            ctx.lineWidth = 10*scale;
+            ctx.lineCap  = 'round';
+            ctx.arc(0, 0, radius, 0,12 * deg0, false);
+            ctx.stroke();
+            ctx.restore();
+    
+        })();
+    
+        function Dot() {
+            this.x = 0;
+            this.y = 0;
+            this.draw = function(ctx) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+                ctx.shadowBlur = 20; // 模糊尺寸
+                ctx.shadowColor = 'rgba(0, 0, 0, .8)'; // 颜色
+                ctx.arc(this.x, this.y, 5*scale, 0, Math.PI * 2, false);
+                ctx.fill();
+                ctx.restore();
+            };
+        }
+    }
+    </script>
+</html>
