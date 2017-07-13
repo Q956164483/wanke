@@ -48,8 +48,12 @@
                     </div>
                     <div id="content ub ub-ver" >
                         <div class="index-edu ub ub-ver ub-ac ub-pc bc-head-index">
-                            <div class="ball-bg ub-img mag-t16">
-                                <canvas></canvas>
+                            <div class="ball-bg ub-img7 mag-t16 ub ub-ac ub-pc">
+                                <div class="canvas-txt ub ub-ac ub-pc ub-ver">
+                                    <div class="fon-s24 pad-b22">剩余额度</div>
+                                    <div class="fon-s48 tc-fff">100.00</div>
+                                    <div class="fon-s24 pad-t22  mag-t16">已使用75%</div>
+                                </div>
                             </div>
                             <div class="ub pad-b32 pad-t32 ub-fh">
                                 <div class="ub-f1 ub ub-fh ub-ver ub-pc ub-ac ubr">
@@ -326,9 +330,54 @@
             } else if (index == 1) {
                 
             } else {
-                openNewWin('wode','wode.html',7)
+                openNewWin('wode','wode.html','')
             }
         })
+        /**
+         * 
+         */
+        appcan.button('.ball-bg','btn-act',function(){
+            openNewWin('wode_edu')
+        })
+        createCanvas($('.ball-bg'),2)
+        function createCanvas(container,endDeg) {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            var canvasSize = $(container).eq(0).offset().width*9.2/10;
+            var lineWidth = Math.floor(canvasSize*12/180);
+            var radius = Math.floor(canvasSize*78/180);
+            var nowDeg = -Math.PI/2;
+            canvas.width = canvasSize;
+            canvas.height = canvasSize;
+            $(container).append(canvas);
+            ctx.translate(canvasSize/2, canvasSize/2);
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(255,255,255,.4)';
+            ctx.lineWidth = lineWidth;
+            ctx.arc(0, 0, radius, 0,Math.PI*2, false);
+            ctx.stroke();
+            (function drawPath (){
+                if (nowDeg < endDeg) {
+                    nowDeg += 0.05;
+                    window.requestAnimationFrame(drawPath);
+                }
+                ctx.beginPath();
+                ctx.strokeStyle = '#FFF';
+                ctx.lineWidth = lineWidth;
+                ctx.lineCap = 'round';
+                ctx.arc(0, 0, radius, -Math.PI/2,nowDeg, false);
+                ctx.stroke();
+                drowRound(nowDeg);
+            })()
+            function drowRound(angle) {
+                var x = radius * Math.cos(angle);
+                var y = radius * Math.sin(angle);
+                ctx.beginPath();
+                ctx.fillStyle = '#38acff';
+                ctx.arc(x, y, lineWidth/2-1 , 0, Math.PI * 2, false);
+                ctx.fill();
+            }
+        }
         var sliderType = new Swiper('#swiperIndex', {
             pagination : '.swiper-pagination',
             onTap:function(swiper,ele){ 
@@ -505,22 +554,78 @@
                 },
                 success: function(data){
                     if(data.code == 200){
-                        setLocVal('userNum','liuk15')
-                        getAccountBank('liuk15')
+                        setLocVal('userNum','v-liuk15')
+                        getAccountBank('v-liuk15')
                     }
                 }
             })
         }
+        /**
+         * 获取用户的账户信息
+         */
         function getAccountBank(userNum) {
+            openToast('数据更新中...');
             AJAX({
                 url:'',
                 data:{
                     method: "getAccountBank",
-                    userNum: "liuk15",
+                    userNum: getLocVal('userNum'),
                 },
                 success: function(data){
                     if(data.code == 200){
-                        setLocVal('accountBank',json2str(data))
+                        getCsCom();
+                        setLocVal('accountBank',json2str(data));  
+                    }
+                }
+            })
+        }
+        /**
+         * 获取默认公司
+         */
+        function getCsCom(){
+            openToast('数据更新中...');
+            AJAX({
+                url:'',
+                data:{
+                    method: "getCsCom",
+                    userNum: getLocVal('userNum')
+                },
+                success: function(data){
+                    if(data.code == 200) {  
+                        $.each(data.t,function(index,item){
+                            if (item.isDef == 1) {
+                                getCsDep(item.companyNumber);
+                                setLocVal('companyDefault',json2str(item));
+                            }
+                        })
+                        setLocVal('companyList',json2str(data.t));
+                    } else {
+                        
+                    }
+                }
+            })
+        }
+        /**
+         * 获取默认部门
+         */
+        function getCsDep(companyNumber){
+            openToast('数据更新中...');
+            AJAX({
+                url:'',
+                data:{
+                    method: "getCsDep",
+                    companyNum: companyNumber,
+                    userNum:getLocVal('userNum')
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data.code == 200){
+                        $.each(data.t,function(index,item){
+                            if (item.isDef == 1) {
+                                console.log('depDefault',item)
+                                setLocVal('depDefault',json2str(item));
+                            }
+                        })
                     }
                 }
             })

@@ -41,7 +41,7 @@ function AJAX(obj){
         data : (obj.data?obj.data:''),
         type : (obj.type?obj.type:'GET'),
         contentType: (obj.contentType?obj.contentType:false),
-        timeout: 5000,
+        timeout: 8000,
         dataType : 'json',
         success : function(data, status, requestCode, response, xhr){
             uexWindow.closeToast();
@@ -49,7 +49,6 @@ function AJAX(obj){
             $closeToast();
             console.log(obj.data.method+'>>>'+JSON.stringify(data));
             var errCode = data.code;
-            console.log(obj.data.method,data);
             if(errCode != 200){ //请求为通过mas应用认证时返回14504状态码
                 //ueppscript('root', 'content', 'initialize()');
             }else{
@@ -98,6 +97,7 @@ function $popup(obj){
         $('body').append(template.compile(tpl)(obj));
         $('.pop-container').on('touchmove',function(e){
             e.stopPropagation();
+            e.preventDefault();
         })
         appcan.button($('.pop-container').find('.button'),'ani-act',function(e){
             var $this = $(this);
@@ -167,6 +167,59 @@ function LoadTplByUrl(url, cb) {
             // cb(data);
         // }
     // });
+}
+/**
+ * 初始化时间选择器
+ */
+function initDatePicker(ele,cb) {
+    var thisDate = isDefine($(ele).val())? $(ele).val() : new Date().Format('yyyy-MM-dd');
+    $(ele).val(thisDate);
+    appcan.button(ele,'btn-act',function(){
+         var Adate = $(ele).val().split('-');
+         uexControl.openDatePicker(+Adate[0], +Adate[1], +Adate[2], function(data){
+             $(ele).val(data.year + '-' + setNum(data.month) + '-' + setNum(data.day));
+         })
+    })
+}
+/**
+ * 初始化用户的账户信息
+ */
+function initUserAccount(){
+    if (!getLocVal('accountBank')) return;
+    accountBank = str2json(getLocVal('accountBank'));
+    $('#userName').val(accountBank.userName);
+    $('#payeeAccount').val(accountBank.payeeAccount);
+    if (getLocVal('companyDefault')) {
+        companyDefault = str2json(getLocVal('companyDefault'));
+        $('.gongsi').html(companyDefault.companyName).attr('data-num',companyDefault.companyNumber);
+    }
+    if (getLocVal('depDefault')) {
+        depDefault = str2json(getLocVal('depDefault'));
+        $('.bumen').html(depDefault.depName).attr('data-num',depDefault.depNumber);
+    }  
+}
+/**
+* 选择报销公司页面选择公司后调用  显示选择的公司
+*/
+function UPDATEGS(){
+    var baoxiao_gongsi = str2json(getLocVal('baoxiao_gongsi'));
+    var companyNumber = baoxiao_gongsi.companyNumber;
+    if(companyNumber != $('.gongsi').attr('data-num')){
+        $('.gongsi').html(baoxiao_gongsi.companyName).attr('data-num',baoxiao_gongsi.companyNumber);
+        if ($('.bumen')) {
+            $('.bumen').html('请选择部门').attr('data-num','');
+        }
+    }
+}
+/**
+ * 选择报销部门页面选择部门后调用  显示选择的部门
+ */
+function UPDATEBM(){
+    var baoxiao_bumen = str2json(getLocVal('baoxiao_bumen'));
+    var depNumber = baoxiao_bumen.depNumber;
+    if(depNumber != $('.bumen').attr('data-num')){
+        $('.bumen').html(baoxiao_bumen.depName).attr('data-num',baoxiao_bumen.depNumber);
+    }
 }
 /**
  * 页面跳转统一控制
@@ -391,7 +444,7 @@ function openNewWin(inWndName,html,inAniID,f){
     if(inAniID)
         uexWindow.open(inWndName,'0',html,inAniID,'','',(f)?f:0);
     else
-        uexWindow.open(inWndName,'0',html,2,'','',(f)?f:0);
+        uexWindow.open(inWndName,'0',html,'','','',(f)?f:0);
 }
 
 /**

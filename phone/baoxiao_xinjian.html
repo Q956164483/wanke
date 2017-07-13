@@ -98,7 +98,7 @@
                              <div class="line-com ub ub-ac ubt bor-ce0e0e0">
                                 <div class="tc-000">预算归属日期</div>
                                 <div class="ub-f1"></div>
-                                <input id="budgetDate" class="fon-s28 tc-999 tx-r" readonly type="text" value="" placeholder="请选择日期" />
+                                <input id="datePicker" class="fon-s28 tc-999 tx-r" readonly type="text" value="" placeholder="请选择日期" />
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubt bor-ce0e0e0">
@@ -115,7 +115,7 @@
                             <div class="line-com ub ub-ac ubt bor-ce0e0e0">
                                 <div class="tc-000">收款人账号</div>
                                 <div class="ub-f1"></div>
-                                <input id="receiveAccount" class="fon-s28 tc-bbb tx-r" readonly  value="" />
+                                <input id="payeeAccount" class="fon-s28 tc-bbb tx-r" readonly  value="" />
                             </div>
                         </div>
                     </div> 
@@ -138,28 +138,26 @@
         <script src="js/main.js"></script>
     </body>
     <script>
-        (function($) {
-            appcan.ready(function() {
-                $("#ScrollContent").on("reload", function(ev,scrollbox){
-                   scrollbox.reset();
-                });
-                $("#ScrollContent").on("more", function(ev,scrollbox){
-                    scrollbox.reset();
-                });
-                var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
-                    $("#ScrollContent").trigger("reload", this);
-                }).on("onReloading",function(a) { 
-                }).on("dragToReload",function() { 
-                }).on("draging",function(status) {
-                }).on("release",function() { 
-                }).on("scrollbottom",function() { 
-                    $("#ScrollContent").trigger("more", this);
-                });
-                $scrollbox.hide();
-                initUserAccount();
-                initDatePicker();
+        appcan.ready(function() {
+            $("#ScrollContent").on("reload", function(ev,scrollbox){
+               scrollbox.reset();
             });
-        })($);
+            $("#ScrollContent").on("more", function(ev,scrollbox){
+                scrollbox.reset();
+            });
+            var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
+                $("#ScrollContent").trigger("reload", this);
+            }).on("onReloading",function(a) { 
+            }).on("dragToReload",function() { 
+            }).on("draging",function(status) {
+            }).on("release",function() { 
+            }).on("scrollbottom",function() { 
+                $("#ScrollContent").trigger("more", this);
+            });
+            $scrollbox.hide();
+            initUserAccount();
+            initDatePicker($('#datePicker'));
+        });
         
         function back(){
             $popup({
@@ -174,26 +172,13 @@
                 }
             });
         }
-        /**
-         * 初始化时间选择器
-         */
-        function initDatePicker() {
-            var thisDate = isDefine($('#budgetDate').val())? $('#budgetDate').val() : new Date().Format('yyyy-MM-dd');
-            $('#budgetDate').val(thisDate);
-            appcan.button('#budgetDate','btn-act',function(){
-                 var Adate = $('#budgetDate').val().split('-');
-                 uexControl.openDatePicker(+Adate[0], +Adate[1], +Adate[2], function(data){
-                     $('#budgetDate').val(data.year + '-' + setNum(data.month) + '-' + setNum(data.day));
-                 })
-            })
-        }
         appcan.button("#nav-left", "btn-act",function(){
             back();
         });
         /**
          * 报销金额输入控制
          */
-        $('.amount').on('keyup change',function(){
+        $('#amount').on('keyup change',function(){
             var $ipt = $(this);
             var val = inputManger.getNum($ipt.val());
             var max = +$ipt.attr('data-max');
@@ -206,15 +191,6 @@
                 $ipt.removeClass('tc-warn').attr('placeholder','最多可报'+max+'元').parent().removeClass('bor-c-warn').find('.tips-jine').addClass('uhide')
             }
         })
-        /**
-         * 初始化用户的账户信息
-         */
-        function initUserAccount(){
-            if (!getLocVal('accountBank')) return;
-            accountBank = str2json(getLocVal('accountBank'));
-            $('#userName').val(accountBank.userName);
-            $('#receiveAccount').val(accountBank.payeeAccount);
-        }
         /**
          * 选择费用类型
          */
@@ -248,30 +224,9 @@
             $('#more-baoxiao').toggleClass('uhide');
         })
         /**
-         * 选择报销部门页面选择部门后调用  显示选择的部门
-         */
-        function changeBuMen(){
-            var baoxiao_bumen = str2json(getLocVal('baoxiao_bumen'));
-            var depNumber = baoxiao_bumen.depNumber;
-            if(depNumber != $('.bumen').attr('data-num')){
-                $('.bumen').html(baoxiao_bumen.depName).attr('data-num',baoxiao_bumen.depNumber);
-            }
-        }
-       /**
-        * 选择报销公司页面选择公司后调用  显示选择的公司
-        */
-       function changeGongsi(){
-            var baoxiao_gongsi = str2json(getLocVal('baoxiao_gongsi'));
-            var companyNumber = baoxiao_gongsi.companyNumber;
-            if(companyNumber != $('.gongsi').attr('data-num')){
-                $('.gongsi').html(baoxiao_gongsi.companyName).attr('data-num',baoxiao_gongsi.companyNumber);
-                $('.bumen').html('请选择部门').attr('data-num','');
-            }
-        }
-        /**
          * 改变费用类型
          */
-        function changeFeiYongLeiXing() {
+        function UPDATEFYLX() {
             var feiyongleixing = str2json(getLocVal('feiyongleixing'));
             var name = feiyongleixing.name;
             if(trim(name) != trim($('.feiyongleixing').html())){
@@ -292,7 +247,7 @@
             var costDeptNum = $('.bumen').attr('data-num');
             var expenseID = $('.feiyongleixing').attr('data-id');
             var expense = $('#expense').val();
-            var budgetDate = $('#budgetDate').val();
+            var budgetDate = $('#datePicker').val();
             if (!isDefine(companyNum)) {
                 openToast('请先选择公司',2000,1); return;
             }
@@ -311,7 +266,7 @@
                     bizAccountBill: {
                         "amount": amount,                              // 报销金额
                         "isSubmit": isSubmit,                           // 是否提交 1-是 0-否
-                        "biller": getLocVal('userName'),          // 制单人编码
+                        "biller": getLocVal('userNum'),          // 制单人编码
                         "cause": cause,                                    // 事由
                         "bizAccountNum": "",                          // 费用报销单编码
                         "companyNum": companyNum,         // 公司编码

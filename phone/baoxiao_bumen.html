@@ -78,64 +78,44 @@
         var comList = [];
         var pageFrom = getLocVal('pageFrom');
         var companyNumber = getLocVal('companyNumber');
-        (function($) {
-            appcan.ready(function() {
-                $("#ScrollContent").on("reload", function(ev,scrollbox){
-                    scrollbox.reset();
-                });
-                $("#ScrollContent").on("more", function(ev,scrollbox){
-                    scrollbox.reset();
-                });
-                var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
-                    $("#ScrollContent").trigger("reload", this);
-                }).on("onReloading",function(a) { 
-                }).on("dragToReload",function() { 
-                }).on("draging",function(status) {
-                }).on("release",function() { 
-                }).on("scrollbottom",function() { 
-                    $("#ScrollContent").trigger("more", this);
-                });
-                $scrollbox.hide();
-                getLoc();
-                getCsDep();
+        appcan.ready(function() {
+            $("#ScrollContent").on("reload", function(ev,scrollbox){
+                scrollbox.reset();
             });
-            $('#search').on('focus',function(){
-                $(this).parent().parent().find('.search-tips').addClass('search-tips-move').find('.placeholder').html('');
-            })
-            $('#search').on('blur',function(){
-                if($(this).val().length == 0){
-                    $(this).parent().parent().find('.search-tips').removeClass('search-tips-move').find('.placeholder').html('搜索');
-                }
-            })
-            $('#search').on('keyup change',function(){
-                if($(this).val().length > 0){
-                    search($(this).val());
-                }else{
-                    renderList(comList);
-                }
-            })
-            appcan.button("#nav-left", "btn-act",function(){
-                winClose(-1);
+            $("#ScrollContent").on("more", function(ev,scrollbox){
+                scrollbox.reset();
             });
-        })($);
-        function getCsDep(){
-            openToast('加载中...');
-            AJAX({
-                url:'',
-                data:{
-                    method: "getCsDep",
-                    companyNum: companyNumber,
-                    userNum:"liuk15"
-                },
-                success: function(data){
-                    console.log(data);
-                    if(data.code == 200){
-                        comList = data.t;
-                        renderList(comList);
-                    }
-                }
-            })
-        }
+            var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
+                $("#ScrollContent").trigger("reload", this);
+            }).on("onReloading",function(a) { 
+            }).on("dragToReload",function() { 
+            }).on("draging",function(status) {
+            }).on("release",function() { 
+            }).on("scrollbottom",function() { 
+                $("#ScrollContent").trigger("more", this);
+            });
+            $scrollbox.hide();
+            getLoc();
+            getCsDep();
+        });
+        $('#search').on('focus',function(){
+            $(this).parent().parent().find('.search-tips').addClass('search-tips-move').find('.placeholder').html('');
+        })
+        $('#search').on('blur',function(){
+            if($(this).val().length == 0){
+                $(this).parent().parent().find('.search-tips').removeClass('search-tips-move').find('.placeholder').html('搜索');
+            }
+        })
+        $('#search').on('keyup change input',function(){
+            if($(this).val().length > 0){
+                search($(this).val());
+            }else{
+                renderList(comList);
+            }
+        })
+        appcan.button("#nav-left", "btn-act",function(){
+            winClose(-1);
+        });
         /**
          * 搜索
          */
@@ -148,6 +128,30 @@
             })
             renderList(searchList);
         }
+        /**
+         *获取部门列表 
+         */
+        function getCsDep(){
+            openToast('加载中...');
+            AJAX({
+                url:'',
+                data:{
+                    method: "getCsDep",
+                    companyNum: companyNumber,
+                    userNum:getLocVal('userNum')
+                },
+                success: function(data){
+                    console.log(data);
+                    if(data.code == 200){
+                        comList = data.t;
+                        renderList(comList);
+                    }
+                }
+            })
+        }
+        /**
+         *渲染列表 
+         */
         function renderList(list){
             $('#allDep').html(template('bumen', {list:list}));
             appcan.button(".item-bumen", "btn-act",function(){
@@ -159,17 +163,23 @@
                     };
                     saveLoc(baoxiao_bumen);
                     setLocVal('baoxiao_bumen',json2str(baoxiao_bumen));
-                    uescript(pageFrom,'changeBuMen()');
+                    uescript(pageFrom,'UPDATEBM()');
                     winClose(-1);
                 }
             });
         }
+        /**
+         *获取本地常用选择 
+         */
         function getLoc() {
             var locBaoxiaoBumen = getLocVal('locBaoxiaoBumen');
             if (!isDefine(locBaoxiaoBumen)) return;
             locBaoxiaoBumen = str2json(locBaoxiaoBumen);
             $('#locBumen').removeClass('uhide').find('.list').html(template('bumen', {list:locBaoxiaoBumen}));
         }
+        /**
+         *保存到本地 
+         */
         function saveLoc(item) {
             var locBaoxiaoBumen = getLocVal('locBaoxiaoBumen');
             var newLoc = [];

@@ -452,6 +452,50 @@ input,textarea{
     -webkit-transform:rotateZ(360deg);
     background-image: url('img/icon_start_act.png') !important;
 }
+
+.icon-edu-tongxun{
+    background-image: url('img/icon_edu_tongxun.png') !important;
+}
+.icon-edu-celiang{
+    background-image: url('img/icon_edu_celiang.png') !important;
+}
+.icon-edu-jiaotong{
+    background-image: url('img/icon_edu_jiaotong.png') !important;
+}
+.icon-edu-qita{
+    background-image: url('img/icon_edu_qita.png') !important;
+}
+
+.icon-list-celiang{
+    background-image: url('img/icon_list_celiang.png') !important;
+}
+.icon-list-diannaobaoxiao{
+    background-image: url('img/icon_list_diannaobaoxiao.png') !important;
+}
+.icon-list-diannaosenqin{
+    background-image: url('img/icon_list_diannaosenqin.png') !important;
+}
+.icon-list-feiyongsenqin{
+    background-image: url('img/icon_list_feiyongsenqin.png') !important;
+}
+.icon-list-hetong{
+    background-image: url('img/icon_list_hetong.png') !important;
+}
+.icon-list-jiaotong{
+    background-image: url('img/icon_list_jiaotong.png') !important;
+}
+.icon-list-qitabaoxiao{
+    background-image: url('img/icon_list_qitabaoxiao.png') !important;
+}
+.icon-list-sixiang{
+    background-image: url('img/icon_list_sixiang.png') !important;
+}
+.icon-list-tongxun{
+    background-image: url('img/icon_list_tongxun.png') !important;
+}
+.icon-list-wuhetongfukuan{
+    background-image: url('img/icon_list_wuhetongfukuan.png') !important;
+}
 /*动画*/
 .transition-0_5{
     transition: all .5s;
@@ -529,11 +573,12 @@ input,textarea{
 }
 .item-feiyong{
     border-radius:.4em;
+    height:6.25em;
     overflow: hidden;
 } 
 .item-feiyong .left{
     width:3.6875em;
-    height:6.25em;
+    height:100%;
     border-radius:0;
 }
 .bc-feiyong{
@@ -545,7 +590,12 @@ input,textarea{
   .bc-cucai{
     background: -webkit-gradient(linear,left top,right bottom,from(#f0d349), to(#f59b5a));
   }
-  
+ .bc-senqin{
+     background: -webkit-gradient(linear,left top,right bottom,from(#49dc96), to(#05b496));
+ }
+ .bc-baoxiao{
+     background: -webkit-gradient(linear,left top,right bottom,from(#f0d349), to(#f59b5a));
+ } 
 
 .progress-item .date, .progress-title .date{
     width:4.5em;
@@ -653,5 +703,30 @@ input,textarea{
     margin-left:0
 }
 
-/*首页*/
+/*我的额度*/
+.icon-edu{
+    width:1.25em;
+    height:1.25em;
+}
 
+.canvas-container{
+    width:6em;
+    height:6em;
+}
+.canvas-txt{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.btn-edu-baoxiao{
+    height:1.6875em;
+    width:4.375em;
+    border-radius:1.6875em;
+}
+/*单据列表*/
+.icon-list{
+    width:1.625em;
+    height:1.625em;
+}

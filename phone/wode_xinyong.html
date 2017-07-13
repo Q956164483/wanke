@@ -125,35 +125,19 @@
         $('#container').css({
             'margin-top':$('#Header').offset().height-$('.h-header').offset().height+'px'
         })
-        $("#ScrollContent").on("reload", function(ev,scrollbox){
-           scrollbox.reset();
-        });
-        $("#ScrollContent").on("more", function(ev,scrollbox){
-            scrollbox.reset();
-        });
-        var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
-            $("#ScrollContent").trigger("reload", this);
-        }).on("onReloading",function(a) { 
-        }).on("dragToReload",function() { 
-        }).on("draging",function(status) {
-        }).on("release",function() { 
-        }).on("scrollbottom",function() { 
-            $("#ScrollContent").trigger("more", this);
-        });
-        $scrollbox.hide();
     });
     
     function initCanvas(scale,obj,level){
         var canvas = document.getElementById('canvas');
         canvas.width = 400*scale;
-        canvas.height = (400-50)*scale;
+        canvas.height = (400)*scale;
         var ctx = canvas.getContext('2d');
         var cWidth = canvas.width 
         var cHeight = canvas.height 
         var stage = obj.title;
         //半径
         var radius = 190*scale
-        var deg0 = Math.PI / 9;
+        var deg0 = 5*Math.PI/6
         var deg1 = 80*(Math.PI/180)
         var dot = new Dot();
         var dotSpeed = 0.03;
@@ -161,13 +145,12 @@
         (function drawFrame() {
             ctx.save();
             ctx.clearRect(0, 0, cWidth, cHeight);
-            ctx.translate(cWidth / 2, (cHeight+50) / 2);
-            ctx.rotate(7.5 * deg0);
+            ctx.translate(cWidth / 2, cHeight / 2);
+            ctx.rotate(5*Math.PI/6);
             dot.x = radius * Math.cos(angle);
             dot.y = radius * Math.sin(angle);
             if(angle < level*deg1) {
                 angle += dotSpeed;
-                console.log(1)
                 window.requestAnimationFrame(drawFrame);
             } else {
                 
@@ -182,15 +165,6 @@
             ctx.stroke();
             ctx.restore();
             
-    
-            // ctx.save(); //中间刻度层
-            // ctx.beginPath();
-            // ctx.strokeStyle = 'rgba(255, 255, 255, .2)';
-            // ctx.lineWidth = 10;
-            // ctx.arc(0, 0, 135, 0, 11 * deg0, false);
-            // ctx.stroke();
-            // ctx.restore();
-    
             ctx.save(); 
             // 刻度线
             for(var i = 0; i < 4; i++) {
@@ -231,7 +205,7 @@
             ctx.restore();
             ctx.save();
                 //信用阶段及评估时间文字
-            ctx.rotate(10.5* deg0);
+            ctx.rotate(1.4* deg0);
             ctx.fillStyle = '#fff';
             ctx.font = 24*scale+'px Microsoft yahei';
             ctx.textAlign = 'center';
@@ -252,7 +226,7 @@
             ctx.strokeStyle = 'rgba(255, 255, 255, .5)';
             ctx.lineWidth = 10*scale;
             ctx.lineCap  = 'round';
-            ctx.arc(0, 0, radius, 0,12 * deg0, false);
+            ctx.arc(0, 0, radius, 0,240*Math.PI/180, false);
             ctx.stroke();
             ctx.restore();
     

@@ -73,28 +73,27 @@
     </body>
     <script>
         var pageFrom = getLocVal('pageFrom');
-        (function($) {
-            appcan.ready(function() {
-                //$('#Header').find('h1').html(getLocVal('feiyongleixing_title'));
-                $("#ScrollContent").on("reload", function(ev,scrollbox){
-                   scrollbox.reset();
-                });
-                $("#ScrollContent").on("more", function(ev,scrollbox){
-                    scrollbox.reset();
-                });
-                var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
-                    $("#ScrollContent").trigger("reload", this);
-                }).on("onReloading",function(a) { 
-                }).on("dragToReload",function() { 
-                }).on("draging",function(status) {
-                }).on("release",function() { 
-                }).on("scrollbottom",function() { 
-                    $("#ScrollContent").trigger("more", this);
-                });
-                $scrollbox.hide();
-                getExpenseUtils()
+        var from = getLocVal('from');
+        appcan.ready(function() {
+            //$('#Header').find('h1').html(getLocVal('feiyongleixing_title'));
+            $("#ScrollContent").on("reload", function(ev,scrollbox){
+               scrollbox.reset();
             });
-        })($);
+            $("#ScrollContent").on("more", function(ev,scrollbox){
+                scrollbox.reset();
+            });
+            var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
+                $("#ScrollContent").trigger("reload", this);
+            }).on("onReloading",function(a) { 
+            }).on("dragToReload",function() { 
+            }).on("draging",function(status) {
+            }).on("release",function() { 
+            }).on("scrollbottom",function() { 
+                $("#ScrollContent").trigger("more", this);
+            });
+            $scrollbox.hide();
+            getExpenseUtils()
+        });
         $('#search').on('focus',function(){
             $(this).parent().parent().find('.search-tips').addClass('search-tips-move').find('.placeholder').html('');
         })
@@ -103,12 +102,6 @@
                 $(this).parent().parent().find('.search-tips').removeClass('search-tips-move').find('.placeholder').html('搜索');
             }
         })
-        /**
-         * 返回
-         */
-        appcan.button("#nav-left", "btn-act",function(){
-            winClose(-1);
-        });
         $('#search').on('keyup change input',function(){
             if($(this).val().length > 0){
                 search($(this).val());
@@ -116,6 +109,13 @@
                 renderList(comList);
             }
         })
+        /**
+         * 返回
+         */
+        appcan.button("#nav-left", "btn-act",function(){
+            winClose(-1);
+        });
+        
         function getExpenseUtils(){
             openToast('加载中...')
             AJAX({
@@ -123,7 +123,7 @@
                 data:{
                     method: "getExpenseUtils",
                     companyNum: "027DC01",
-                    from:'biz'
+                    from:from?from:'biz'
                 },
                 success: function(data){
                     if(data.code == 200){
@@ -155,7 +155,7 @@
                         id: $this.attr('data-id')
                     };
                     setLocVal('feiyongleixing',json2str(feiyongleixing));
-                    uescript(pageFrom,'changeFeiYongLeiXing()');
+                    uescript(pageFrom,'UPDATEFYLX()');
                     winClose(-1);
                 }
             });

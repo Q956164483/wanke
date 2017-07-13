@@ -43,11 +43,12 @@
                         </div>
                     </div>
                     <div id="container" class="ub  ub-ver">
-                        <textarea class="bc-fff mag-t32 pad-l28 pad-t22 pad-b22 pad-r28" placeholder="请在此处输入你的问题！如果问题中有涉及到单据编号 或流水号，请输入到此处，谢谢！" onfocus="this.placeholder=''" onblur="this.placeholder='请在此处输入你的问题！如果问题中有涉及到单据编号 或流水号，请输入到此处，谢谢！'" name="" rows="10"></textarea>
+                        <textarea class="bc-fff mag-t32 pad-l28 pad-t22 pad-b22 pad-r28 fon-s28" placeholder="请在此处输入你的问题！如果问题中有涉及到单据编号 或流水号，请输入到此处，谢谢！" onfocus="this.placeholder=''" onblur="this.placeholder='请在此处输入你的问题！如果问题中有涉及到单据编号 或流水号，请输入到此处，谢谢！'" name="" rows="10"></textarea>
                         <div class="ub ub-ac bc-fff mag-t32 pad-l28 pad-r28 ubb bor-ce0e0e0 pad-t36 pad-b36">
                             <div class="ub-f1 tc-000">添加图片</div>
                         </div>
                         <div class="ub ub-ver bc-fff pad-l28 pad-r28 pad-t36 pad-b36 tc-333">
+                            
                             <div class="icon-addimg ub-img"></div>
                         </div>
                    </div> 
@@ -99,23 +100,7 @@
             * 保存
             */
             appcan.button('#submit','btn-act',function(){
-                $popup({
-                    tpl:'tpl/print.html',
-                    code:'494941481080E9229',
-                    buttonCallBack:function(index,e){   
-                        if($(e.target).hasClass('submit')){
-                            closePop($(e.target),function(){
-                                $toast({
-                                    tpl:'tpl/toast.html',
-                                    icon:'icon-ok',
-                                    msg:'已发送至你的邮箱',
-                                    time:2000
-                                })
-                            });
-                            
-                        }
-                    }
-                });
+                
             })
             /**
             * 发起K2

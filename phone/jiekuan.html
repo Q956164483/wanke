@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/animate.min.css">
         <link rel="stylesheet" href="css/common.css">
     </head>
-    <body class="" ontouchstart>
+    <body id="body" ontouchstart>
         <div class="bc-bg" tabindex="0" data-control="PAGE" id="Page">
             <div class="uh bc-head ubb bor-ce0e0e0" data-control="HEADER" id="Header">
                 <div class="ub h-header">
@@ -47,31 +47,28 @@
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0 jiekuan-leixing">
                                 <div class="tc-000">借款类型</div>
                                 <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-999 tx-r" readonly type="text" value="一般借款" placeholder="" />
+                                <input data-type="10" class="fon-s28 tc-999 tx-r" readonly type="text" value="一般借款" placeholder="" />
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
-                            <div class="line-com ub ub-ac ubb bor-ce0e0e0  jiekuan-feiyong-leixing uhide">
-                                <div class="tc-000">费用类型</div>
-                                <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-999 tx-r" readonly value="活动费"  type="tel" placeholder="" />
-                                <div class="icon-arrow-right ub-img7"> </div>
-                            </div>
-                            <div class="line-com ub ub-ac ubb bor-ce0e0e0 jiekuan-yongtu">
-                                <div class="tc-000">借款用途<span class="tc-f05050">*</span></div>
-                                <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-999 tx-r" value=""  type="tel" placeholder="请选择" />
+                            <div class="line-com ub ub-ac ubb bor-ce0e0e0 senqing-feiyongleixing">
+                                <div class="tc-000">
+                                    <span class="text">借款用途</span>
+                                    <span class="tc-f05050">*</span>
+                                </div>
+                                <div class="ub-f1 tx-r fon-s28 feiyongleixing ut-s">请选择</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0">
                                 <div class="tc-000">借款金额<span class="tc-f05050">*</span></div>
                                 <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-999 tx-r baoxiao-jine" data-max="150"  type="tel" placeholder="请填写" />
+                                <input id="amount" class="fon-s28 tc-999 tx-r baoxiao-jine" data-max="150"  type="tel" placeholder="请填写" />
+                                <div class="tips-jine fon-s28 uhide">已超出可借金额</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ">
                                 <div class="tc-000">用途说明<span class="tc-f05050">*</span></div>
                                 <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-999 tx-r baoxiao-jine" data-max="150"  type="tel" placeholder="请填写" />
+                                <input class="fon-s28 tc-999 tx-r "  placeholder="请填写" />
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                         </div>
@@ -84,40 +81,39 @@
                             </div>
                          </div>
                          <div class="bc-fff hide animated fadeIn" id="more-baoxiao">   
-                            <div class="line-com ub ub-ac ubt bor-ce0e0e0 ">
+                            <div class="line-com ub ub-ac ubt bor-ce0e0e0">
                                 <div class="tc-000">借款人</div>
                                 <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-bbb tx-r" readonly=""  value="周芳喜" />
+                                <input id="userName" class="fon-s28 tc-bbb tx-r" readonly  value="" />
                             </div>
                             <div class="line-com ub ub-ac ubt bor-ce0e0e0">
                                 <div class="tc-000">借款日期</div>
                                 <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-999 tx-r" readonly type="text" value="2017-08-06" placeholder="" />
+                                <input id="datePicker" class="fon-s28 tc-999 tx-r" readonly type="text" value="" placeholder="请选择日期" />
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubt bor-ce0e0e0">
                                 <div class="tc-000">预计还款日期</div>
                                 <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-999 tx-r" readonly type="text" value="2017-08-06" placeholder="" />
+                                <input id="datePicker1" class="fon-s28 tc-999 tx-r" readonly type="text" value="" placeholder="请选择日期" />
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubt bor-ce0e0e0 baoxiao-gongsi">
-                                <div class="tc-000 baoxiao_gongsi">借款支付公司</div>
-                                <div class="ub-f1"></div>
-                                <div class="fon-s28 date">武汉万科</div>
+                                <div class="tc-000">借款支付公司</div>
+                                <div class="fon-s28 gongsi ub-f1 tx-r mag-l28 ut-s">请选择公司</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubt bor-ce0e0e0 baoxiao-bumen">
-                                <div class="tc-000 baoxiao_bumen">借款支付部门</div>
-                                <div class="ub-f1"></div>
-                                <div class="fon-s28 date">IT支持组</div>
+                                <div class="tc-000">借款支付部门</div>
+                                <div class="fon-s28 bumen ub-f1 tx-r mag-l28 ut-s">请选择部门</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubt bor-ce0e0e0">
                                 <div class="tc-000">收款人账号</div>
                                 <div class="ub-f1"></div>
-                                <input class="fon-s28 tc-bbb tx-r" readonly="" value="48489484" />
+                                <input id="payeeAccount" class="fon-s28 tc-bbb tx-r" readonly  value="" />
                             </div>
+
                         </div>
                     </div> 
                     <div class="h-96"></div>
@@ -135,13 +131,13 @@
         <script id="baoxiao_type" type="text/html">
             <div class="pop-container ub ub-ac ub-pc animated fadeIn" data-close-ani="fadeOutDown">
                  <div class="pop-bot ub ub-ver animated fadeInUp bc-bg pop-content">
-                    <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36 baoxiao_type bc-fff">
+                    <div data-type="10" class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36 baoxiao_type bc-fff">
                             一般借款
                     </div>
-                    <div class="ub ub-pc ub-ac  ubb bor-ce0e0e0 pad-t36 pad-b36 baoxiao_type bc-fff">
+                    <div data-type="20" class="ub ub-pc ub-ac  ubb bor-ce0e0e0 pad-t36 pad-b36 baoxiao_type bc-fff">
                             事项借款
                     </div>
-                    <div class="ub ub-pc ub-ac  pad-t36 pad-b36 baoxiao_type bc-fff">
+                    <div data-type="30" class="ub ub-pc ub-ac  pad-t36 pad-b36 baoxiao_type bc-fff">
                             备用金借款
                     </div>
                     <div class="ub ub-pc ub-ac mag-t16 pad-t36 pad-b36 baoxiao_type tc-999 bc-fff">
@@ -156,165 +152,284 @@
         <script src="js/main.js"></script>
     </body>
     <script>
-        (function($) {
-            appcan.ready(function() {
-                $("#ScrollContent").on("reload", function(ev,scrollbox){
-                   scrollbox.reset();
-                });
-                $("#ScrollContent").on("more", function(ev,scrollbox){
-                    scrollbox.reset();
-                });
-                var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
-                    $("#ScrollContent").trigger("reload", this);
-                }).on("onReloading",function(a) { 
-                }).on("dragToReload",function() { 
-                }).on("draging",function(status) {
-                }).on("release",function() { 
-                }).on("scrollbottom",function() { 
-                    $("#ScrollContent").trigger("more", this);
-                });
-                $scrollbox.hide();
+       appcan.ready(function() {
+            $("#ScrollContent").on("reload", function(ev,scrollbox){
+               scrollbox.reset();
             });
-            function back(){
-                $popup({
-                    tpl:'tpl/alert.html',
-                    title:'确定放弃当前内容？',
-                    content:'你填写的内容还未保存',
-                    buttons:['取消','<div class="tc-main-blue">确定</div>'],
-                    buttonCallBack:function(index,e){   
-                        if(index == 1){
-                            winClose(-1);
-                        }
-                    }
-                });
-                
-            }
-            appcan.button("#nav-left", "btn-act",function(){
-                back();
+            $("#ScrollContent").on("more", function(ev,scrollbox){
+                scrollbox.reset();
             });
-            /**
-             * 选择借款类型
-             */
-            appcan.button('.jiekuan-leixing','btn-act',function(){
-                $('body').append(template('baoxiao_type', {}));
-                $('.pop-container').one('webkitAnimationEnd   animationend', function(){
-                    $(this).one('click',function(e){
-                        closePop($(this));
-                    }).find('.pop-content').on('click',function(e){
-                        e.stopPropagation();
-                    })
-                });
-                appcan.button('.baoxiao_type','ani-act',function(){
-                    var $this = $(this);
-                    var index = $(this).index();
-                    //alert(index);
-                    closePop($this);
-                    if(index == 3){
-                        return false;
-                    }else{
-                        if(trim($this.html()) !== trim($('.jiekuan-leixing input').val())){
-                            $popup({
-                                tpl:'./tpl/alert.html',
-                                title:'提示',
-                                content:'更改借款类型将清空所填内容， 确定要修改吗？',
-                                buttons:['否','<div class="tc-main-blue">是</div>'],
-                                buttonCallBack:function(index,$alertContainer,e){   
-                                    if(index == 1){
-                                        $('.jiekuan-leixing input').val(trim($this.html()));
-                                        if(trim($this.html()) != '一般借款'){
-                                            $('.jiekuan-yongtu').addClass('uhide');
-                                            $('.jiekuan-feiyong-leixing').removeClass('uhide');
-                                            openNewWin('jiekuan_xuanzesenqindan')
-                                        }else{
-                                            $('.jiekuan-yongtu').removeClass('uhide');
-                                            $('.jiekuan-feiyong-leixing').addClass('uhide');
-                                        }
-                                        appcan.button('.jiekuan-feiyong-leixing','ani-act',function(){
-                                            openNewWin('senqing_feiyongleixing_1')
-                                        })
-                                    }
-                                }
-                            });
-                        }
+            var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
+                $("#ScrollContent").trigger("reload", this);
+            }).on("onReloading",function(a) { 
+            }).on("dragToReload",function() { 
+            }).on("draging",function(status) {
+            }).on("release",function() { 
+            }).on("scrollbottom",function() { 
+                $("#ScrollContent").trigger("more", this);
+            });
+            $scrollbox.hide();
+            initDatePicker($('#datePicker'));
+            initDatePicker($('#datePicker1'));
+            initUserAccount();
+        })
+        function back(){
+            $popup({
+                tpl:'tpl/alert.html',
+                title:'确定放弃当前内容？',
+                content:'你填写的内容还未保存',
+                buttons:['取消','<div class="tc-main-blue">确定</div>'],
+                buttonCallBack:function(index,e){   
+                    if(index == 1){
+                        winClose(-1);
                     }
+                }
+            });
+        }
+        /**
+         * 报销金额输入控制
+         */
+        $('#amount').on('keyup change',function(){
+            var $ipt = $(this);
+            var val = inputManger.getNum($ipt.val());
+            var max = +$ipt.attr('data-max');
+            $ipt.val(val);
+            if(val > max){
+                $ipt.val('').attr('placeholder','').parent().addClass('bor-c-warn').find('.tips-jine').removeClass('uhide').click(function(){
+                    $ipt.focus()
                 })
-            })
-            $('.baoxiao-jine').on('keyup change',function(){
-                var val = inputManger.getNum($(this).val());
-                $(this).val(val);
-                console.log(val);
-                if(val > 150){
-                    $(this).addClass('tc-warn').parent().addClass('bor-c-warn');
+            }else{
+                $ipt.removeClass('tc-warn').attr('placeholder','最多可报'+max+'元').parent().removeClass('bor-c-warn').find('.tips-jine').addClass('uhide')
+            }
+        })
+        /**
+         * 改变费用类型
+         */
+        function UPDATEFYLX() {
+            var feiyongleixing = str2json(getLocVal('feiyongleixing'));
+            var name = feiyongleixing.name;
+            if(trim(name) != trim($('.feiyongleixing').html())){
+                $('.feiyongleixing').html(feiyongleixing.name).attr('data-id',feiyongleixing.id);
+            }
+        }
+        /**
+        * 选择报销公司页面选择公司后调用  显示选择的公司
+        */
+        function UPDATEGS(){
+            var baoxiao_gongsi = str2json(getLocVal('baoxiao_gongsi'));
+            var companyNumber = baoxiao_gongsi.companyNumber;
+            if(companyNumber != $('.gongsi').attr('data-num')){
+                $('.gongsi').html(baoxiao_gongsi.companyName).attr('data-num',baoxiao_gongsi.companyNumber);
+                $('.bumen').html('请选择部门').attr('data-num','');
+            }
+        }
+        
+        /**
+         * 选择报销部门页面选择部门后调用  显示选择的部门
+         */
+        function UPDATEBM(){
+            var baoxiao_bumen = str2json(getLocVal('baoxiao_bumen'));
+            var depNumber = baoxiao_bumen.depNumber;
+            if(depNumber != $('.bumen').attr('data-num')){
+                $('.bumen').html(baoxiao_bumen.depName).attr('data-num',baoxiao_bumen.depNumber);
+            }
+        }
+        /**
+         * 借款用途(费用类型)
+         */
+        appcan.button('.senqing-feiyongleixing','btn-act',function(){
+            setLocVal('pageFrom','jiekuan');
+            setLocVal('from','daily');
+            openNewWin('baoxiao_feiyongleixing');
+        })
+        /**
+         * 选择报销公司
+         */
+        appcan.button(".baoxiao-gongsi", "btn-act",function(){
+            setLocVal('pageFrom','jiekuan');
+            openNewWin('baoxiao_gongsi');
+        });
+        /**
+         * 选择报销部门
+         */
+        appcan.button(".baoxiao-bumen", "btn-act",function(){
+            var companyNumber = $('.gongsi').attr('data-num');
+            if (!isDefine(companyNumber)) {
+                openToast('请先选择公司',2000,1);
+                return;
+            }
+            setLocVal('companyNumber',companyNumber);
+            setLocVal('pageFrom','jiekuan');
+            openNewWin('baoxiao_bumen');
+        });
+        
+        /**
+         * 选择借款类型
+         */
+        appcan.button('.jiekuan-leixing','btn-act',function(){
+            $('#body').append(template('baoxiao_type', {}));
+            $('.pop-container').one('webkitAnimationEnd   animationend', function(){
+                $(this).one('click',function(e){
+                    closePop($(this));
+                }).find('.pop-content').on('click',function(e){
+                    e.stopPropagation();
+                })
+            });
+            appcan.button('.baoxiao_type','ani-act',function(){
+                var $this = $(this);
+                var index = $(this).index();
+                //alert(index);
+                closePop($this);
+                if(index == 3){
+                    return false;
                 }else{
-                    $(this).removeClass('tc-warn').parent().removeClass('bor-c-warn');
+                    if(trim($this.html()) !== trim($('.jiekuan-leixing input').val())){
+                        $popup({
+                            tpl:'./tpl/alert.html',
+                            title:'提示',
+                            content:'更改借款类型将清空所填内容， 确定要修改吗？',
+                            buttons:['否','<div class="tc-main-blue">是</div>'],
+                            buttonCallBack:function(index,$alertContainer,e){   
+                                if(index == 1){
+                                    $('.jiekuan-leixing input').val(trim($this.html())).attr('data-type',$this.attr('data-type'));
+                                    if(trim($this.html()) != '一般借款'){
+                                        $('.senqing-feiyongleixing').find('.text').html('费用类型');
+                                        openNewWin('jiekuan_xuanzesenqindan')
+                                    }else{
+                                        $('.senqing-feiyongleixing').find('.text').html('借款用途');
+                                    }
+                                    appcan.button('.jiekuan-feiyong-leixing','ani-act',function(){
+                                        openNewWin('senqing_feiyongleixing_1')
+                                    })
+                                }
+                            }
+                        });
+                    }
                 }
             })
-            /**
-             * 选择报销公司
-             */
-            appcan.button(".baoxiao-gongsi", "btn-act",function(){
-                setLocVal('pageFrom','baoxiao_tongxun');
-                openNewWin('baoxiao_gongsi');
-            });
-            /**
-             * 选择报销部门
-             */
-            appcan.button(".baoxiao-bumen", "btn-act",function(){
-                setLocVal('pageFrom','baoxiao_tongxun');
-                openNewWin('baoxiao_bumen');
-            });
-            
-            appcan.button('#more','btn-act',function(){
-                $(this).find('.icon-arrow-bot-act').toggleClass('rotate-180');
-                $('#more-baoxiao').toggleClass('hide');
-            })
-            /**
-             * 选择报销部门页面选择部门后调用  显示选择的部门
-             */
-            function changeBuMen(){
-                var baoxiao_bumen = getLocVal('baoxiao_bumen');
-                $('.baoxiao_bumen').html(baoxiao_bumen);
+        })
+        /**
+         * 费用事项
+         */
+        appcan.button('.senqing-feiyongsixiang','btn-act',function(){
+            setLocVal('pageFrom','senqing');
+            setLocVal('from','other');
+            openNewWin('senqing_feiyongsixiang');
+        })
+        /**
+         * 选择报销公司
+         */
+        appcan.button(".baoxiao-gongsi", "btn-act",function(){
+            setLocVal('pageFrom','baoxiao_tongxun');
+            openNewWin('baoxiao_gongsi');
+        });
+        /**
+         * 选择报销部门
+         */
+        appcan.button(".baoxiao-bumen", "btn-act",function(){
+            setLocVal('pageFrom','baoxiao_tongxun');
+            openNewWin('baoxiao_bumen');
+        });
+        
+        appcan.button('#more','btn-act',function(){
+            $(this).find('.icon-arrow-bot-act').toggleClass('rotate-180');
+            $('#more-baoxiao').toggleClass('hide');
+        })
+        /**
+         * 选择报销部门页面选择部门后调用  显示选择的部门
+         */
+        function changeBuMen(){
+            var baoxiao_bumen = getLocVal('baoxiao_bumen');
+            $('.baoxiao_bumen').html(baoxiao_bumen);
+        }
+       /**
+        * 选择报销公司页面选择公司后调用  显示选择的公司
+        */
+       function changeGongsi(){
+            var baoxiao_gongsi = getLocVal('baoxiao_gongsi');
+            $('.baoxiao_gongsi').html(baoxiao_gongsi);
+        }
+        function saveDailyLoanBills(isSubmit) {
+            openToast('请求中...');
+            var amount = $('#amount').val();
+            var cause = $('#cause').val();
+            var companyNum = $('.gongsi').attr('data-num');
+            var costDeptNum = $('.bumen').attr('data-num');
+            var loanDate = $('#datePicker').val();
+            var returnDate = $('#datePicker1').val();
+            var loanType = $('.jiekuan-leixing input').attr('data-type');
+            if (!isDefine(companyNum)) {
+                openToast('请先选择公司',2000,1); return;
             }
-           /**
-            * 选择报销公司页面选择公司后调用  显示选择的公司
-            */
-           function changeGongsi(){
-                var baoxiao_gongsi = getLocVal('baoxiao_gongsi');
-                $('.baoxiao_gongsi').html(baoxiao_gongsi);
+            if (!isDefine(costDeptNum)) {
+                openToast('请先选择部门',2000,1); return;
             }
-            
-            /**
-            * 保存
-            */
-            appcan.button('#save','btn-act',function(){
-                $popup({
-                    tpl:'./tpl/alert.html',
-                    title:'保存成功',
-                    content:'请到“个人中心/我的报销/未发K2”</br>修改或者提交',
-                    buttons:['<div class="tc-main-blue">确定</div>'],
-                    buttonCallBack:function(index,$alertContainer,e){   
-                        console.log(e);
+            if (!isDefine(amount)) {
+                openToast('请填写借款金额',2000,1); return;
+            }
+            AJAX({
+                data:{
+                    method: "saveDailyLoanBills",
+                    bizAccountBill: {
+                        "biller": getLocVal('userName'),          // 制单人编码
+                        "accAccountNum": accountBank.payeeAccount,   // 收款人账号
+                        "cause": cause,                                    // 事由
+                        "dailyLoanNum": '',                             // 借款单编码
+                        "companyNum": companyNum,         // 公司编码
+                        "costDeptNum": costDeptNum,         // 部门编码
+                        "isSubmit": isSubmit,                           // 是否提交 1-是 0-否
+                        "amount": amount,                              // 报销金额
+                        "loanDate":loanDate,                           // 借款日期(yyyy-MM-dd)
+                        "returnDate":returnDate,                     // 预计还款日期(yyyy-MM-dd)
+                        "loanType":loanType                            // 用途说明
                     }
-                });
-            })
-            /**
-            * 发起K2
-            */
-           appcan.button('#sendK2','btn-act',function(){
-                $popup({
-                    tpl:'./tpl/alert.html',
-                    title:'是否要发起K2 ?',
-                    content:'发起K2后单据内容将不允许再修改，如需修改则需废弃重新填写。',
-                    buttons:['否','<div class="tc-main-blue">是</div>'],
-                    buttonCallBack:function(index,$alertContainer,e){   
-                        if(index == 1){
+                },
+                success: function(data){
+                    if(data.code == 200){
+                        if (isSubmit == 0) {
+                            $popup({
+                                tpl:'./tpl/alert.html',
+                                title:'保存成功',
+                                content:'请到“个人中心/我的报销/未发K2”</br>修改或者提交',
+                                buttons:['<div class="tc-main-blue">确定</div>'],
+                                buttonCallBack:function(index,$alertContainer,e){   
+                                    // console.log(e);
+                                }
+                            });
+                        } else {
                             openNewWin('send_k2');
                         }
+                        
                     }
-                });
+                }
             })
-           
-        })($);
-        
-    </script>
+        }
+        /**
+        * 保存
+        */
+        appcan.button('#save','btn-act',function(){
+            saveDailyLoanBills(0)
+        })
+        /**
+        * 发起K2
+        */
+       appcan.button('#sendK2','btn-act',function(){
+            $popup({
+                tpl:'./tpl/alert.html',
+                title:'是否要发起K2 ?',
+                content:'发起K2后单据内容将不允许再修改，如需修改则需废弃重新填写。',
+                buttons:['否','<div class="tc-main-blue">是</div>'],
+                buttonCallBack:function(index,$alertContainer,e){   
+                    if(index == 1){
+                        saveDailyLoanBills(1)
+                    }
+                }
+            });
+        })
+        /**
+         * 返回
+         */
+        appcan.button("#nav-left", "btn-act",function(){
+            back();
+        });    </script>
 </html>

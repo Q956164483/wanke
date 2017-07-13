@@ -45,11 +45,11 @@
                     <div id="container" class="ub  ub-ver">
                         <div class="ub ub-ver bc-fff mag-t32">
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0 baoxiao-gongsi">
-                                <div class="tc-000 baoxiao_gongsi">报销公司</div>
-                                <div class="ub-f1"></div>
-                                <div class="fon-s28 date">武汉万科</div>
+                                <div class="tc-000">报销公司</div>
+                                <div class="fon-s28 gongsi ub-f1 tx-r mag-l28 ut-s">请选择公司</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
+                            
                             <div class="line-com ub ub-ac  bor-ce0e0e0 senqing-feiyongleixing">
                                 <div class="tc-000">费用类型<span class="tc-f05050">*</span></div>
                                 <div class="ub-f1"></div>
@@ -62,7 +62,7 @@
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0">
                                 <div class="tc-000">事项名称<span class="tc-f05050">*</span></div>
                                 <div class="ub-f1"></div>
-                                <div class="fon-s28 date">请填写</div>
+                                <div class="fon-s28 feiyongsixiang">请填写</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0 senqing-feiyongsixiang">
@@ -72,9 +72,8 @@
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0 baoxiao-bumen">
-                                <div class="tc-000 baoxiao_bumen">报销部门</div>
-                                <div class="ub-f1"></div>
-                                <div class="fon-s28 date">IT支持组</div>
+                                <div class="tc-000">报销部门</div>
+                                <div class="fon-s28 bumen ub-f1 tx-r mag-l28 ut-s">请选择部门</div>
                                 <div class="icon-arrow-right ub-img7"> </div>
                             </div>
                             <div class="line-com ub ub-ac ubb bor-ce0e0e0 senqing-xiangmufenqi">
@@ -139,111 +138,113 @@
         <script src="js/main.js"></script>
     </body>
     <script>
-        (function($) {
-            appcan.ready(function() {
-                $("#ScrollContent").on("reload", function(ev,scrollbox){
-                   scrollbox.reset();
-                });
-                $("#ScrollContent").on("more", function(ev,scrollbox){
-                    scrollbox.reset();
-                });
-                var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
-                    $("#ScrollContent").trigger("reload", this);
-                }).on("onReloading",function(a) { 
-                }).on("dragToReload",function() { 
-                }).on("draging",function(status) {
-                }).on("release",function() { 
-                }).on("scrollbottom",function() { 
-                    $("#ScrollContent").trigger("more", this);
-                });
-                $scrollbox.hide();
+        appcan.ready(function() {
+            $("#ScrollContent").on("reload", function(ev,scrollbox){
+               scrollbox.reset();
             });
-            
-            appcan.button("#nav-left", "btn-act",function(){
-                winClose(-1);
+            $("#ScrollContent").on("more", function(ev,scrollbox){
+                scrollbox.reset();
             });
-            /**
-             * 选择费用类型
-             */
-            appcan.button(".senqing-feiyongleixing", "btn-act",function(){
-                openNewWin('senqing_feiyongleixing_1');
+            var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
+                $("#ScrollContent").trigger("reload", this);
+            }).on("onReloading",function(a) { 
+            }).on("dragToReload",function() { 
+            }).on("draging",function(status) {
+            }).on("release",function() { 
+            }).on("scrollbottom",function() { 
+                $("#ScrollContent").trigger("more", this);
             });
-            /**
-             * 费用事项
-             */
-            appcan.button('.senqing-feiyongsixiang','btn-act',function(){
-                openNewWin('senqing_feiyongsixiang');
-            })
-            /**
-             * 项目分期
-             */
-            appcan.button('.senqing-xiangmufenqi','btn-act',function(){
-                openNewWin('senqing_xiangmufenqi');
-            })
-            /**
-             * 选择报销公司
-             */
-            appcan.button(".baoxiao-gongsi", "btn-act",function(){
-                setLocVal('pageFrom','baoxiao_tongxun');
-                openNewWin('baoxiao_gongsi');
-            });
-            /**
-             * 选择报销部门
-             */
-            appcan.button(".baoxiao-bumen", "btn-act",function(){
-                setLocVal('pageFrom','baoxiao_tongxun');
-                openNewWin('baoxiao_bumen');
-            });
-            
-            appcan.button('#more','btn-act',function(){
-                $(this).find('.icon-arrow-bot-act').toggleClass('rotate-180');
-                $('#more-baoxiao').toggleClass('hide');
-            })
-            /**
-             * 选择报销部门页面选择部门后调用  显示选择的部门
-             */
-            function changeBuMen(){
-                var baoxiao_bumen = getLocVal('baoxiao_bumen');
-                $('.baoxiao_bumen').html(baoxiao_bumen);
-            }
-           /**
-            * 选择报销公司页面选择公司后调用  显示选择的公司
-            */
-           function changeGongsi(){
-                var baoxiao_gongsi = getLocVal('baoxiao_gongsi');
-                $('.baoxiao_gongsi').html(baoxiao_gongsi);
-            }
-             /**
-            * 保存
-            */
-            appcan.button('#save','btn-act',function(){
-                $popup({
-                    tpl:'tpl/alert.html',
-                    title:'保存成功',
-                    content:'请到“个人中心/我的报销/未发K2”</br>修改或者提交',
-                    buttons:['<div class="tc-main-blue">确定</div>'],
-                    buttonCallBack:function(index,e){   
-                        console.log(e);
-                    }
-                });
-            })
-            /**
-            * 发起K2
-            */
-           appcan.button('#sendK2','btn-act',function(){
-                $popup({
-                    tpl:'tpl/alert.html',
-                    title:'是否要发起K2 ?',
-                    content:'发起K2后单据内容将不允许再修改，如需修改则需废弃重新填写。',
-                    buttons:['否','<div class="tc-main-blue">是</div>'],
-                    buttonCallBack:function(index,e){   
-                        if(index == 1){
-                            openNewWin('send_k2');
-                        }
-                    }
-                });
-            })
-        })($);
+            $scrollbox.hide();
+            initUserAccount();
+        });
+        appcan.button("#nav-left", "btn-act",function(){
+            winClose(-1);
+        });
         
+        /**
+         * 选择费用事项调用  
+         */
+        function changeFeiYongSiXiang() {
+            var feiyongsixiang = str2json(getLocVal('feiyongsixiang'));
+            var name = feiyongsixiang.name;
+            if(trim(name) != trim($('.feiyongsixiang').html())){
+                $('.feiyongsixiang').html(feiyongsixiang.name).attr('data-number',feiyongsixiang.number);
+            }
+        }
+        /**
+         * 选择费用类型
+         */
+        appcan.button(".senqing-feiyongleixing", "btn-act",function(){
+            openNewWin('senqing_feiyongleixing_1');
+        });
+        /**
+         * 费用事项
+         */
+        appcan.button('.senqing-feiyongsixiang','btn-act',function(){
+            setLocVal('pageFrom','senqing');
+            setLocVal('from','other');
+            openNewWin('senqing_feiyongsixiang');
+        })
+        /**
+         * 项目分期
+         */
+        appcan.button('.senqing-xiangmufenqi','btn-act',function(){
+            openNewWin('senqing_xiangmufenqi');
+        })
+        /**
+         * 选择报销公司
+         */
+        appcan.button(".baoxiao-gongsi", "btn-act",function(){
+            setLocVal('pageFrom','senqing');
+            openNewWin('baoxiao_gongsi');
+        });
+        /**
+         * 选择报销部门
+         */
+        appcan.button(".baoxiao-bumen", "btn-act",function(){
+            var companyNumber = $('.gongsi').attr('data-num');
+            if (!isDefine(companyNumber)) {
+                openToast('请先选择公司',2000,1);
+                return;
+            }
+            setLocVal('companyNumber',companyNumber);
+            setLocVal('pageFrom','senqing');
+            openNewWin('baoxiao_bumen');
+        });
+        
+        appcan.button('#more','btn-act',function(){
+            $(this).find('.icon-arrow-bot-act').toggleClass('rotate-180');
+            $('#more-baoxiao').toggleClass('hide');
+        })
+         /**
+        * 保存
+        */
+        appcan.button('#save','btn-act',function(){
+            $popup({
+                tpl:'tpl/alert.html',
+                title:'保存成功',
+                content:'请到“个人中心/我的报销/未发K2”</br>修改或者提交',
+                buttons:['<div class="tc-main-blue">确定</div>'],
+                buttonCallBack:function(index,e){   
+                    console.log(e);
+                }
+            });
+        })
+        /**
+        * 发起K2
+        */
+       appcan.button('#sendK2','btn-act',function(){
+            $popup({
+                tpl:'tpl/alert.html',
+                title:'是否要发起K2 ?',
+                content:'发起K2后单据内容将不允许再修改，如需修改则需废弃重新填写。',
+                buttons:['否','<div class="tc-main-blue">是</div>'],
+                buttonCallBack:function(index,e){   
+                    if(index == 1){
+                        openNewWin('send_k2');
+                    }
+                }
+            });
+        })
     </script>
 </html>

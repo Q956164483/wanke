@@ -156,23 +156,7 @@
             * 保存
             */
             appcan.button('#submit','btn-act',function(){
-                $popup({
-                    tpl:'tpl/print.html',
-                    code:'494941481080E9229',
-                    buttonCallBack:function(index,e){   
-                        if($(e.target).hasClass('submit')){
-                            closePop($(e.target),function(){
-                                $toast({
-                                    tpl:'tpl/toast.html',
-                                    icon:'icon-ok',
-                                    msg:'已发送至你的邮箱',
-                                    time:2000
-                                })
-                            });
-                            
-                        }
-                    }
-                });
+                
             })
             /**
             * 发起K2

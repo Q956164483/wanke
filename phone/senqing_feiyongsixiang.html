@@ -53,29 +53,27 @@
                         </div>
                     </div>
                     <div id="container" class="ub  ub-ver" style="margin-top:2.6em">
-                            <div class="ub ub-ver bc-fff mag-t32">
-                                <div class="line-com line-last-bor-0  ub ub-ac ubb bor-ce0e0e0">
-                                    <div class="ub-f1 ut-s">BI数据分析展示BI数据分析展示BI数据分析展示BI数据分析展示BI数据分析展示</div>
-                                    <div class="icon-selected ub-img7"> </div>
-                                </div>
-                                <div class="line-com line-last-bor-0 ub ub-ac ubb bor-ce0e0e0">
-                                    <div class="ub-f1 ut-s">BI数据分析展示BI数据分析展示BI数据分析展示BI数据分析展示BI数据分析展示</div>
-                                    <div class="icon-selected ub-img7"> </div>
-                                </div>
-                                <div class="line-com line-last-bor-0 ub ub-ac ubb bor-ce0e0e0">
-                                    <div class="ub-f1 ut-s">BI数据分析展示BI数据分析展示BI数据分析展示BI数据分析展示BI数据分析展示</div>
-                                    <div class="icon-selected ub-img7"> </div>
-                                </div>
+                            <div id="list" class="ub ub-ver bc-fff mag-t32">
+                                
                             </div>   
                     </div>
             </div>
         </div>
+        <script id="item" type="text/html">
+            {{each list as value i}}
+                <div class="item line-com line-last-bor-0 ub ub-ac ubb bor-ce0e0e0" data-number="{{value.itemNumber}}" data-name="{{value.itemName}}">
+                    <div class="ub-f1 ut-s">{{value.itemName}}</div>
+                    <div class="icon-selected ub-img7"> </div>
+                </div>
+            {{/each}}
+        </script>
         <script src="js/appcan.concat.js"></script>
+        <script src="js/common/artTemplate.js"></script>
         <script src="js/main.js"></script>
     </body>
     <script>
+        var pageFrom = getLocVal('pageFrom');
         (function($) {
-            var pageFrom = getLocVal('pageFrom');
             appcan.ready(function() {
                 $("#ScrollContent").on("reload", function(ev,scrollbox){
                    scrollbox.reset();
@@ -93,23 +91,74 @@
                     $("#ScrollContent").trigger("more", this);
                 });
                 $scrollbox.hide();
-            });
-            $('#search').on('focus',function(){
-                $(this).parent().parent().find('.search-tips').addClass('search-tips-move').find('.placeholder').html('');
-            })
-            $('#search').on('blur',function(){
-                if($(this).val().length == 0){
-                    $(this).parent().parent().find('.search-tips').removeClass('search-tips-move').find('.placeholder').html('搜索');
-                }
-            })
-            appcan.button("#nav-left", "btn-act",function(){
-                winClose(-1);
-            });
-            appcan.button(".line-com", "btn-act",function(){
-                $(this).parent().find('.line-com').removeClass('selected');
-                $(this).addClass('selected');
-                winClose(-1)
+                getItemTypes()
             });
         })($);
+        $('#search').on('focus',function(){
+            $(this).parent().parent().find('.search-tips').addClass('search-tips-move').find('.placeholder').html('');
+        })
+        $('#search').on('blur',function(){
+            if($(this).val().length == 0){
+                $(this).parent().parent().find('.search-tips').removeClass('search-tips-move').find('.placeholder').html('搜索');
+            }
+        })
+        /**
+         * 返回
+         */
+        appcan.button("#nav-left", "btn-act",function(){
+            winClose(-1);
+        });
+        $('#search').on('keyup change input',function(){
+            if($(this).val().length > 0){
+                search($(this).val());
+            }else{
+                renderList(comList);
+            }
+        })
+        function getItemTypes(){
+            openToast('加载中...')
+            AJAX({
+                url:'',
+                data:{
+                    method: "getItemTypes",
+                    companyNum: "027DC01",
+                },
+                success: function(data){
+                    if(data.code == 200){
+                        comList = data.t;
+                        renderList(comList);
+                    }
+                }
+            })
+        }
+        /**
+         * 搜索
+         */
+        function search(sword){
+            var searchList = [];
+            $.each(comList,function(index,item){
+                if(item.expenseTypeName.indexOf(sword)>=0){
+                    searchList.push(item);
+                }
+            })
+            renderList(searchList);
+        }
+        function renderList(list){
+            $('#list').html(template('item', {list:list}));
+            appcan.button(".item", "btn-act",function(){
+                var $this = $(this);
+                $('.item').removeClass('selected');
+                $this.addClass('selected');
+                if(isDefine(pageFrom)){
+                    var feiyongsixiang = {
+                        name: $this.attr('data-name'),
+                        number: $this.attr('data-number')
+                    };
+                    setLocVal('feiyongsixiang',json2str(feiyongsixiang));
+                    uescript(pageFrom,'changeFeiYongSiXiang()');
+                    winClose(-1);
+                }
+            });
+        }
     </script>
 </html>

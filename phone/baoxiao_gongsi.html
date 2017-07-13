@@ -77,64 +77,54 @@
     <script>
         var comList = []; 
         var pageFrom = getLocVal('pageFrom');
-        (function($) {
-            appcan.ready(function() {
-                $("#ScrollContent").on("reload", function(ev,scrollbox){
-                   scrollbox.reset();
-                });
-                $("#ScrollContent").on("more", function(ev,scrollbox){
-                    scrollbox.reset();
-                });
-                var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
-                    $("#ScrollContent").trigger("reload", this);
-                }).on("onReloading",function(a) { 
-                }).on("dragToReload",function() { 
-                }).on("draging",function(status) {
-                }).on("release",function() { 
-                }).on("scrollbottom",function() { 
-                    $("#ScrollContent").trigger("more", this);
-                });
-                $scrollbox.hide();
-                getLoc();
-                getCsCom();
+        appcan.ready(function() {
+            $("#ScrollContent").on("reload", function(ev,scrollbox){
+               scrollbox.reset();
             });
-            $('#search').on('focus',function(){
-                $(this).parent().parent().find('.search-tips').addClass('search-tips-move').find('.placeholder').html('');
-            })
-            $('#search').on('blur',function(){
-                if($(this).val().length == 0){
-                    $(this).parent().parent().find('.search-tips').removeClass('search-tips-move').find('.placeholder').html('搜索');
-                }
-            })
-            $('#search').on('keyup change input',function(){
-                if($(this).val().length > 0){
-                    search($(this).val());
-                }else{
-                    renderList(comList);
-                }
-            })
-            appcan.button("#nav-left", "btn-act",function(){
-                winClose(-1);
+            $("#ScrollContent").on("more", function(ev,scrollbox){
+                scrollbox.reset();
             });
-        })($);
-        
+            var $scrollbox = $.scrollbox($("body")).on("releaseToReload",function() { 
+                $("#ScrollContent").trigger("reload", this);
+            }).on("onReloading",function(a) { 
+            }).on("dragToReload",function() { 
+            }).on("draging",function(status) {
+            }).on("release",function() { 
+            }).on("scrollbottom",function() { 
+                $("#ScrollContent").trigger("more", this);
+            });
+            $scrollbox.hide();
+            getLoc();
+            getCsCom();
+        });
+            
+        $('#search').on('focus',function(){
+            $(this).parent().parent().find('.search-tips').addClass('search-tips-move').find('.placeholder').html('');
+        })
+        $('#search').on('blur',function(){
+            if($(this).val().length == 0){
+                $(this).parent().parent().find('.search-tips').removeClass('search-tips-move').find('.placeholder').html('搜索');
+            }
+        })
+        $('#search').on('keyup change input',function(){
+            if($(this).val().length > 0){
+                search($(this).val());
+            }else{
+                renderList(comList);
+            }
+        })
+        appcan.button("#nav-left", "btn-act",function(){
+            winClose(-1);
+        });
+        /**
+         * 获取公司列表 （由于该接口比较慢，固直接在首页获取，这里直接调用本地存储）
+         */
         function getCsCom(){
-            openToast('加载中...')
-            AJAX({
-                url:'',
-                data:{
-                    method: "getCsCom",
-                    userNum: getLocVal('userNum')
-                },
-                success: function(data){
-                    if(data.code == 200){
-                        comList = data.t;
-                        renderList(comList);
-                    } else {
-                        
-                    }
-                }
-            })
+            openToast('加载中...');
+            var companyList = str2json(getLocVal('companyList'));
+            comList = companyList;
+            renderList(comList);
+
         }
         /**
          * 搜索
@@ -142,28 +132,36 @@
         function search(sword){
             var searchList = [];
             $.each(comList,function(index,item){
-                if(item.companyName.indexOf(sword)>=0){
+                if(item.companyName.indexOf(sword) >= 0){
                     searchList.push(item);
                 }
             })
             renderList(searchList);
         }
+        /**
+         * 渲染公司列表
+         */
         function renderList(list){
             $('#allComPany').html(template('company', {list:list}));
+            closeToast();
             appcan.button(".item-gongshi", "btn-act",function(){
                 if(isDefine(pageFrom)){
                     var $this = $(this);
                     var baoxiao_gongsi = {
                         companyName: $this.attr('data-name'),
                         companyNumber: $this.attr('data-num')
-                    };
+                    }
                     saveLoc(baoxiao_gongsi);
                     setLocVal('baoxiao_gongsi',json2str(baoxiao_gongsi));
-                    uescript(pageFrom,'changeGongsi()');
+                    console.log(pageFrom,baoxiao_gongsi);
+                    uescript(pageFrom,'UPDATEGS()');
                     winClose(-1);
                 }
             });
         }
+        /**
+         * 获取常用选择
+         */
         function getLoc() {
             var locBaoxiaoGongsi = getLocVal('locBaoxiaoGongsi');
             if (!isDefine(locBaoxiaoGongsi)) return;
@@ -171,6 +169,9 @@
             locBaoxiaoGongsi = str2json(locBaoxiaoGongsi);
             $('#locComPany').removeClass('uhide').find('.list').html(template('company', {list:locBaoxiaoGongsi}));
         }
+        /**
+         * 保存常用选择到本地
+         */
         function saveLoc(item) {
             var locBaoxiaoGongsi = getLocVal('locBaoxiaoGongsi');
             var newLoc = [];
