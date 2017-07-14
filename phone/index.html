@@ -16,10 +16,10 @@
         <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
         <link rel="stylesheet" href="css/common.css">
         <link rel="stylesheet" href="css/index.css">
-    </head>
-    <body class="bc-bg" ontouchstart>
-        <div class="" tabindex="0" data-control="PAGE" id="Page">
-            <div class="uh bc-head-index tc-fff" data-control="HEADER" id="Header">
+    <script src="js/remChange.js"></script></head>
+    <body class="bc-bg ub ub-ver ub-fh" ontouchstart>
+        <div class="bc-bg" tabindex="0" data-control="PAGE" id="Page">
+            <div class="uh bc-head-index tc-fff" data-control="HEADER"  id="Header">
                 <div class="ub h-header">
                     <div class="ub ub-ac nav-btn " id="nav-left">
                         <div class="icon-back icon-back-white ub-img"></div>
@@ -32,21 +32,21 @@
                     </div>
                 </div>
             </div>
-            <div class="" data-control="CONTENT" id="ScrollContent">
+            <div class="uba" data-control="CONTENT" id="ScrollContent">
                 <div class="scrollbox">
-                    <div class="box_bounce ub ub-ver ub-pc bc-bg">
+                    <div class="box_bounce ub ub-ver ub-pc">
                         <div class="ub-f1"></div>
                         <div class="bounce_status">
                             <span class="fa fa-arrow-down"><span/>&nbsp;&nbsp;下拉刷新
                         </div>
                         <div class="bounce_status">
                             <span class="fa fa-arrow-up"><span/>&nbsp;&nbsp;释放立即刷新
-                        </div>
-                        <div class="bounce_status">
+                                </div>
+                        <div class="bounce_status ">
                             <i class="fa fa-refresh fa-spin"></i>&nbsp;更新中. . .
                         </div>
                     </div>
-                    <div id="content ub ub-ver" >
+                    <div id="container" class="ub  ub-ver">
                         <div class="index-edu ub ub-ver ub-ac ub-pc bc-head-index">
                             <div class="ball-bg ub-img7 mag-t16 ub ub-ac ub-pc">
                                 <div class="canvas-txt ub ub-ac ub-pc ub-ver">
@@ -164,11 +164,11 @@
                             </div>
                             <div class="clear"></div>
                         </div>
+                        <div class="h-96 pad-t36 pad-b36 bc-bg"></div>
                     </div> 
                 </div>
             </div>
         </div>
-        <div class="h-96 pad-t36 pad-b36"></div>
         <div class="ub ub-fh bc-fff ubt bor-ce0e0e0 h-96 footer" data-control="FOOTER">
                 <div class="ub-f1 ub-fh ub ub-pc ub-ac bot-item act">
                     <div class="icon-bot icon-home ub-img"></div>
@@ -334,7 +334,7 @@
             }
         })
         /**
-         * 
+         * 额度查询
          */
         appcan.button('.ball-bg','btn-act',function(){
             openNewWin('wode_edu')
@@ -342,8 +342,9 @@
         createCanvas($('.ball-bg'),2)
         function createCanvas(container,endDeg) {
             var canvas = document.createElement('canvas');
+            canvas.style.width = $(container).eq(0).offset().width*9.2/10+'px';
             var ctx = canvas.getContext('2d');
-            var canvasSize = $(container).eq(0).offset().width*9.2/10;
+            var canvasSize = 3*$(container).eq(0).offset().width*9.2/10;
             var lineWidth = Math.floor(canvasSize*12/180);
             var radius = Math.floor(canvasSize*78/180);
             var nowDeg = -Math.PI/2;
@@ -379,20 +380,10 @@
             }
         }
         var sliderType = new Swiper('#swiperIndex', {
-            pagination : '.swiper-pagination',
-            onTap:function(swiper,ele){ 
-                var clickedSlide = swiper.clickedSlide;
-                var index = $(clickedSlide).index();
-                if(isDefine(clickedSlide)){
-                    $('.swiper-slide').removeClass('swiper-slide-act').eq(index).addClass('swiper-slide-act');
-                    appcan.window.selectMultiPopover("content", index); 
-                }          
-            }
+            pagination : '.swiper-pagination'
         })
-        /**
-         * 轮播的点击
-         */
-        $('.item-baoxiao').on('click',function(e){
+        
+        appcan.button('.item-baoxiao','ani-act',function(){
             var type = $(this).attr('data-type');
             // 三个常用报销
             if (type === 'baoxiao_tongxun' || type === 'baoxiao_celiang' || type === 'baoxiao_jiaotong') {
@@ -430,11 +421,6 @@
             }
         })
         
-        var Aurl_bao_xiao = ['baoxiao_tongxun','baoxiao_jiaotong','baoxiao_celiang'];
-        appcan.button('.baoxiao-cangyong','btn-act',function(){
-            var index = $(this).index();
-            openNewWin(Aurl_bao_xiao[index])
-        })
         /**
          * 其他报销新建
          */
@@ -540,9 +526,7 @@
             })
         }
         function login(){
-            $toast({msg:'初始化中...'})
             AJAX({
-                url:'',
                 data:{
                     method: "loginEAS",
                     userName: "sysWS",
@@ -554,8 +538,8 @@
                 },
                 success: function(data){
                     if(data.code == 200){
-                        setLocVal('userNum','v-liuk15')
-                        getAccountBank('v-liuk15')
+                        setLocVal('userNum','zhaozm01');
+                        getAccountBank('zhaozm01');
                     }
                 }
             })
@@ -566,7 +550,6 @@
         function getAccountBank(userNum) {
             openToast('数据更新中...');
             AJAX({
-                url:'',
                 data:{
                     method: "getAccountBank",
                     userNum: getLocVal('userNum'),
@@ -585,7 +568,6 @@
         function getCsCom(){
             openToast('数据更新中...');
             AJAX({
-                url:'',
                 data:{
                     method: "getCsCom",
                     userNum: getLocVal('userNum')
@@ -611,7 +593,6 @@
         function getCsDep(companyNumber){
             openToast('数据更新中...');
             AJAX({
-                url:'',
                 data:{
                     method: "getCsDep",
                     companyNum: companyNumber,

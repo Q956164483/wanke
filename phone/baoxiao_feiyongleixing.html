@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="css/appcan.control.css">
         <link rel="stylesheet" href="css/sweetalert.css">
         <link rel="stylesheet" href="css/common.css">
-    </head>
+    <script src="js/remChange.js"></script></head>
     <body class="" ontouchstart>
         <div class="bc-bg" tabindex="0" data-control="PAGE" id="Page">
             <div class="uh bc-head ubb bor-ce0e0e0 ub ub-ver" data-control="HEADER" id="Header">
@@ -155,7 +155,7 @@
                         id: $this.attr('data-id')
                     };
                     setLocVal('feiyongleixing',json2str(feiyongleixing));
-                    uescript(pageFrom,'UPDATEFYLX()');
+                    ueppscript(pageFrom,'content','UPDATEFYLX()');
                     winClose(-1);
                 }
             });

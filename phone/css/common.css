@@ -1,6 +1,10 @@
+
 #ScrollContent {
     padding:2.63em 0em 0em 0em;
     color:#999;
+}
+.uh_ios7 #ScrollContent{
+    padding:2.1em 0em 0em 0em;
 }
 .bounce_status {
     padding-bottom:.63em;
@@ -12,9 +16,6 @@
     margin-left:1.1875em;
     margin-right:0.5625em;
 }
-#nav-left .text {
-    
-}
 .hide {
     display:none;
 }
@@ -25,7 +26,7 @@
 .opa_5{
     opacity:.5
 }
-.ofl-y-s {
+.ofl-y-s{
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -145,6 +146,9 @@ input,textarea{
     margin-right:.875em;
 }
 /*内边距*/
+.mag-t-head{
+    margin-top:2.75em;
+}
 .pad-l28{
     padding-left:.875em;
 }

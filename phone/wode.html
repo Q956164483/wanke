@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
         <link rel="stylesheet" href="css/common.css">
         <link rel="stylesheet" href="css/index.css">
-    </head>
+    <script src="js/remChange.js"></script></head>
     <body class="bc-bg" ontouchstart>
         <div tabindex="0" data-control="PAGE" id="Page">
             <div class="uh bc-head-index tc-fff" data-control="HEADER" id="Header">
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-container tab-wode ubb bor-ce0e0e0"  id="sliderType">
+                        <div class="swiper-container tab-wode"  id="sliderType">
                             <div class="swiper-wrapper bc-fff">
                                 <div class="swiper-slide tc-666 ub ub-ac ub-pc swiper-slide-act">
                                     <span class="fon-s28">我的报销单</span>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-container ubb bor-ce0e0e0 bc-fff"  id="sliderContent">
+                        <div class="swiper-container ubb bor-ce0e0e0 bc-fff uba"  id="sliderContent">
                             <div class="swiper-wrapper">
                                 <div id="wodeBaoxiao" class="swiper-slide pad-t36 pad-b36">
                                     <div class="w-p20 item fl ub ub-ver ub-ac ub-pc">
@@ -320,7 +320,7 @@
             var type = $(this).attr('data-type');
             if (type) {
                 setLocVal('type',type);
-                openNewWin('wode_baoxiao_list_com')
+                openNewWin('wode_danju_list_com')
             }
         })
     </script>

@@ -7,16 +7,6 @@
 
  */
 /*global appcan,window */
-appcan.use("detect", function($, detect) {
-    if (detect.os.ios) {
-        var viewport = document.getElementsByName("viewport");
-        var scale = window.devicePixelRatio ? (1 / window.devicePixelRatio) : 1;
-        $("[name='viewport']").attr("content", "width=device-width,target-densitydpi=device-dpi,initial-scale=" + scale + ", minimum-scale=" + scale + ", maximum-scale=" + scale);
-        var fontsize = $("body").css("font-size");
-        $("body").css("font-size", parseInt(fontsize) * window.devicePixelRatio + "px");
-    }
-})
-
 appcan.extend(function(app, exports, module) {
     var $ = appcan.require('dom');
     var appWin = appcan.require('window');
@@ -578,12 +568,6 @@ appcan.extend(function(app, exports, module) {
     }
     
 
-    //for emulator
-    $(document).ready(function() {
-
-    });
-
-    initFontsize();
 
     module.exports = {
         elementFor : elementFor,

@@ -1,4 +1,3 @@
-
 var tpl_alert = '<div class="pop-container ub ub-ac ub-pc ub-img7 animated fadeIn" data-close-ani="bounceOut">'
                         +'<div class="alert ub ub-ver animated bounceIn pop-content">'
                             +'{{if title}}'

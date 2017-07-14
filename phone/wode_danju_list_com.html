@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/common.css">
+    <script src="js/remChange.js"></script></head>
+    <body id="body" class="um-vp " ontouchstart>
+        <div class="bc-bg ub ub-ver ub-fv" tabindex="0">
+            <div class="uh bc-head ubb bor-ce0e0e0">
+                <div class="ub h-header">
+                    <div class="ub ub-ac nav-btn " id="nav-left">
+                        <div class="icon-back ub-img"></div>
+                        <div class="text ub-f1 fon-s28">返回</div>
+                    </div>
+                    <h1 id="title" class="ut ub-f1 ulev-3 ut-s tx-c " tabindex="0"></h1>
+                    <div class="nav-btn" id="nav-right">
+                        <div class="fa  fa-1g  ub-img1">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-container tab-wode"  id="sliderType">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide tc-666 ub ub-ac ub-pc">
+                            <span class="fon-s28">进行中</span>
+                        </div>
+                        <div class="swiper-slide tc-666 ub ub-ac ub-pc ">
+                            <span class="fon-s28">已完成</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content ub ub-f1">
+                <div class="swiper-container ub-fh tc-999" id="sliderContent">
+                    <div class="swiper-wrapper ub-fv">
+                        <div class="swiper-slide ub ub-ver ofl-y-s">
+                        </div> 
+                        <div class="swiper-slide ub ub-ver ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script id="list" type="text/html">
+            {{each list as value i}}
+            <div class="ub bc-fff item-feiyong mag-t32 item mag-l28 mag-r28 ">
+                <div class="{{value.type==1?'bc-baoxiao':'bc-senqin'}} left ub ub-ac ub-pc">
+                    <div class="{{value.icon}} icon-list ub-img7"></div>
+                </div>
+                <div class="ub-f1 ub  pad-l28 pad-r28 pad-b22">
+                    <div class="ub ub-f1 ub-ver mag-t32 ">
+                        <div class="tc-000">{{value.name}}</div>
+                        <div class="ub ub-ac  ub-f1">
+                            <span class="fon-s28 tc-999">事由：<span>{{value.cause}}</span></span>
+                        </div>
+                        <div class="">
+                            <span class="fon-s24 tc-999">{{value.billDate}}</span>
+                        </div>
+                    </div>
+                    <div class="ub ub-ver">
+                        <div class="tc-main-blue fon-s28 mag-t32 tx-r">
+                            <span>¥</span>{{value.amount}}
+                        </div>
+                        <div class="ub-f1"></div>
+                        <div class="tag  bc-yellow-tag1 tc-fff fon-s18 mag-l28">提交未发k2</div>
+                    </div>                               
+                </div>
+            </div>
+            {{/each}}
+        </script>
+        <script src="js/appcan.concat.js"></script>
+        <script src="js/swiper-3.4.2.min.js"></script>
+        <script src="js/common/artTemplate.js"></script>
+        <script src="js/tpl.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+    <script>
+        var type = getLocVal('type');
+        appcan.ready(function() {
+             var sliderType = new Swiper('#sliderType', {
+                slidesPerView: 2,
+                onTap:function(swiper,ele){ 
+                    var clickedSlide = swiper.clickedSlide;
+                    var index = $(clickedSlide).index();
+                    if(isDefine(clickedSlide)){
+                        $('#sliderType .swiper-slide').removeClass('swiper-slide-act').eq(index).addClass('swiper-slide-act');
+                        sliderContent.slideTo(index, 333, false);//切换到第一个slide，速度为1秒
+                    }       
+                }
+            });
+             var sliderContent = new Swiper('#sliderContent', {
+                onSlideChangeEnd: function(swiper){
+                      $('#sliderType .swiper-slide').removeClass('swiper-slide-act').eq(swiper.activeIndex).addClass('swiper-slide-act');
+                 }
+              });
+              $('#sliderType .swiper-slide').removeClass('swiper-slide-act').eq(0).addClass('swiper-slide-act');
+              $('#sliderContent .swiper-slide').css({
+                  height: $('#sliderContent').offset().height+'px'
+              })
+              appcan.button("#nav-left", "btn-act",function(){
+                winClose(-1);
+            });
+        });
+        var config = {
+            '2,feiyong': {
+                title: '费用申请单',
+                icon: 'icon-list-feiyongsenqin',
+            },
+            '2,sixiang': {
+                title: '事项申请单',
+                icon: 'icon-list-sixiang',
+                method: 'getProjectApprovals'
+            },
+            '2,diannao': {
+                title:'电脑申请单',
+                icon: 'icon-list-diannaosenqin',
+                method: 'getcomputerApplications'
+            },
+            '1,tongxun': {
+                title:'通讯费报销单',
+                icon: 'icon-list-tongxun'
+            },
+            '1,celiang': {
+                title:'车辆费报销单',
+                icon: 'icon-list-celiang'
+            },
+            '1,jiaotong': {
+                title:'交通费报销单',
+                icon: 'icon-list-jiaotong'
+            },
+            '1,feiyong': {
+                title:'费用报销单',
+                icon: 'icon-list-qitabaoxiao'
+            },
+            '1,diannao': {
+                title:'电脑报销单',
+                icon: 'icon-list-diannaobaoxiao'
+            },
+            '1,hetongfukuan': {
+                title:'合同付款单',
+                //icon: 'icon-list-tongxun'
+            },
+            '1,wuhetongfukuan': {
+                title:'无合同付款单',
+                icon: 'icon-list-wuhetongfukuan'
+            },
+            '1,hetong': {
+                title:'合同',
+                icon: 'icon-list-hetong'
+            },
+            '1,jiekuan': {
+                title:'借款单',
+                // icon: 'icon-list-tongxun'
+            },
+        }
+        $('#title').html(config[type].title)
+        getList();
+        
+        function getList(){
+            AJAX({
+                data:{
+                    method: config[type].method,
+                    userNum: getLocVal('userNum')
+                },
+                success: function(data){
+                    if(data.code == 200){
+                        var list = data.t;
+                        var tplList = [];
+                        $.each(list,function(index,item){
+                            item.type = type.split(',')[0];
+                            item.icon = config[type].icon;
+                            tplList.push(item);
+                        })
+                        console.log(tplList);
+                        $('#sliderContent .swiper-slide').html(template('list', {list:tplList}));
+                    }
+                }
+            })
+            
+        }
+        appcan.button('.show-more','btn-act',function(){
+            $(this).find('.icon-arrow-top').toggleClass('rotate-180');
+            $(this).next().toggleClass('uhide');
+        })
+        
+           
+    </script>
+</html>

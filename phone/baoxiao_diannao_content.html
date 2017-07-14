@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/common.css">
+    <script src="js/remChange.js"></script></head>
+    <body id="body" class="ub ub-ver bc-bg" ontouchstart>
+        <div id="container" class="ub  ub-ver">
+            <div class="ub ub-ver bc-fff mag-t32">
+                <div class="line-com ub ub-ac ubb bor-ce0e0e0 jiekuan-leixing">
+                    <div class="tc-000">申请单号</div>
+                    <div class="ub-f1"></div>
+                    <input class="fon-s28 tc-bbb tx-r" readonly type="text" value="" placeholder="" />
+                    <div class="icon-arrow-right ub-img7"> </div>
+                </div>
+                <div class="line-com ub ub-ac ubb bor-ce0e0e0">
+                    <div class="tc-000">本次报销金额<span class="tc-f05050">*</span></div>
+                    <div class="ub-f1"></div>
+                    <input class="fon-s28 tc-bbb tx-r baoxiao-jine" data-max="150"  type="tel" placeholder="请填写" />
+                    <div class="icon-arrow-right ub-img7"> </div>
+                </div>
+                <div class="line-com ub ub-ac ">
+                    <div class="tc-000">说明</div>
+                    <div class="ub-f1"></div>
+                    <input class="fon-s28 tc-999 tx-r baoxiao-jine"  type="tel" placeholder="请填写" />
+                    <div class="icon-arrow-right ub-img7"> </div>
+                </div>
+            </div>
+            
+            <div class="ub ub-ver bc-fff mag-t32 h-line-baxiao of-y-h" id="more">
+                <div class="line-com ub ub-ac more tc-main-blue">
+                    <div class="">更多</div>
+                    <div class="ub-f1"></div>
+                    <div class="icon-arrow-bot-act ub-img7 transition-0_5"></div>
+                </div>
+             </div>
+             <div class="bc-fff hide animated fadeIn" id="more-baoxiao">   
+                <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                    <div class="tc-000">申请人</div>
+                    <div class="ub-f1"></div>
+                    <input id="userName" class="fon-s28 tc-bbb tx-r" readonly  value="" />
+                </div>
+                <div class="line-com ub ub-ac ubt bor-ce0e0e0 baoxiao-gongsi">
+                    <div class="tc-000">报销公司</div>
+                    <div class="fon-s28 gongsi ub-f1 tx-r mag-l28 ut-s">请选择公司</div>
+                    <div class="icon-arrow-right ub-img7"> </div>
+                </div>
+                <div class="line-com ub ub-ac ubt bor-ce0e0e0 baoxiao-bumen">
+                    <div class="tc-000">报销部门</div>
+                    <div class="fon-s28 bumen ub-f1 tx-r mag-l28 ut-s">请选择部门</div>
+                    <div class="icon-arrow-right ub-img7"> </div>
+                </div>
+                <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                    <div class="tc-000">累计报销金额</div>
+                    <div class="ub-f1"></div>
+                    <input class="fon-s28 tc-bbb tx-r" readonly type="text" value="200.00" placeholder="" />
+                    <!-- <div class="icon-arrow-right ub-img7"> </div> -->
+                </div>
+                <div class="line-com ub ub-ac ubt bor-ce0e0e0 jiesuanfangsi">
+                    <div class="tc-000 baoxiao_bumen">结算方式</div>
+                    <div class="ub-f1"></div>
+                    <input class="fon-s28 tc-999 tx-r" readonly  value="请选择结算方式" />
+                    <div class="icon-arrow-right ub-img7"> </div>
+                </div>
+                <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                    <div class="tc-000">收款人账号</div>
+                    <div class="ub-f1"></div>
+                    <input id="payeeAccount" class="fon-s28 tc-bbb tx-r" readonly  value="" />
+                </div>
+            </div>
+        </div> 
+        <div class="h-96"></div>
+        <div class="ub ub-fh bc-fff ubt bor-ce0e0e0 h-96" data-control="FOOTER">
+                <div id="save" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 tc-main-blue">
+                    保存
+                </div>
+                <div id="sendK2" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 bc-main-blue tc-fff">
+                    发起K2
+                </div>
+        </div>
+        <script id="jiesuanfangsi" type="text/html">
+            <div class="pop-container ub ub-ac ub-pc animated fadeIn" data-close-ani="fadeOutDown">
+                 <div class="pop-bot ub ub-ver animated fadeInUp bc-bg pop-content">
+                    <div class="ub ub-pc ub-ac ubb bor-ce0e0e0 pad-t36 pad-b36  bc-fff">
+                            选择结算方式
+                    </div>
+                    {{each data.list as value i}}
+                    <div data-num="{{value.payModeNumber}}" class="{{data.selectedNum == value.payModeNumber ? 'selected' : ''}} ub ub-pc ub-ac pad-l28 pad-r28 ubb bor-ce0e0e0 pad-t36 pad-b36 jiesuan_type bc-fff ">
+                            <div class="ub-f1 txt">{{value.payModeName}}</div>
+                            <div class="icon-selected ub-img7"></div>
+                    </div>
+                    {{/each}}
+                 </div>
+            </div>
+        </script>
+        <script src="js/appcan.concat.js"></script>
+        <script src="js/common/artTemplate.js"></script>
+        <script src="js/tpl.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+    <script>
+        var selectedNum;
+        appcan.ready(function() {
+            initUserAccount();
+            getPayModes();
+        });
+        function back(){
+            $popup({
+                tpl:'tpl/alert.html',
+                title:'确定放弃当前内容？',
+                content:'你填写的内容还未保存',
+                buttons:['取消','<div class="tc-main-blue">确定</div>'],
+                buttonCallBack:function(index,e){   
+                    if(index == 1){
+                        uescript('','winClose(-1)');
+                    }
+                }
+            });
+        }
+        /**
+         * 选择报销公司
+         */
+        appcan.button(".baoxiao-gongsi", "btn-act",function(){
+            setLocVal('pageFrom','baoxiao_diannao');
+            openNewWin('baoxiao_gongsi');
+        });
+        /**
+         * 选择报销部门
+         */
+        appcan.button(".baoxiao-bumen", "btn-act",function(){
+            var companyNumber = $('.gongsi').attr('data-num');
+            if (!isDefine(companyNumber)) {
+                openToast('请先选择公司',2000,1);
+                return;
+            }
+            setLocVal('companyNumber',companyNumber);
+            setLocVal('pageFrom','baoxiao_diannao');
+            openNewWin('baoxiao_bumen');
+        });
+        appcan.button("#nav-left", "btn-act",function(){
+            back();
+        });
+        /**
+         * 获取结算方式
+         */
+        function getPayModes() {
+            openToast('加载中...');
+            AJAX({
+                url:'',
+                data:{
+                    method: "getPayModes"
+                },
+                success: function(data){
+                    if(data.code == 200) {  
+                        payModeList = data.t;
+                        $.each(payModeList,function(index,item){
+                            if (item.isDefault) {
+                                selectedNum = item.payModeNumber;
+                                $('.jiesuanfangsi input').val(item.payModeName).attr('data-num',selectedNum);
+                            }
+                        })
+                        initPayMode();
+                    } else {
+                        
+                    }
+                }
+            })
+        }
+        /**
+         * 选择结算方式
+         */
+        function initPayMode() {
+            appcan.button('.jiesuanfangsi','btn-act',function(){
+                var data = {
+                    selectedNum:selectedNum,
+                    list:payModeList
+                }
+                $('#body').append(template('jiesuanfangsi', {data:data})); 
+                $('.pop-container').one('webkitAnimationEnd   animationend', function(){
+                    $(this).one('click',function(e){
+                        closePop($(this));
+                    }).find('.pop-content').on('click',function(e){
+                        e.stopPropagation();
+                    })
+                });
+                appcan.button('.jiesuan_type','btn-act',function(){
+                    var $this = $(this);
+                    var index = $(this).index();
+                    closePop($this);
+                    selectedNum = $this.attr('data-num');
+                    if(selectedNum != $('.jiesuanfangsi input').val()){
+                        $('.jiesuanfangsi input').val($this.find('.txt').html()).attr('data-num',selectedNum);
+                    }
+                })
+            })
+        }
+        /**
+         * 
+         */
+        function saveComputerAccount(isSubmit) {
+            openToast('请求中...');
+            var amount = $('#amount').val();
+            var cause = $('#cause').val();
+            var companyNum = $('.gongsi').attr('data-num');
+            var costDeptNum = $('.bumen').attr('data-num');
+            var expenseID = $('.feiyongleixing').attr('data-id');
+            var expense = $('#expense').val();
+            var budgetDate = $('#datePicker').val();
+            if (!isDefine(companyNum)) {
+                openToast('请先选择公司',2000,1); return;
+            }
+            if (!isDefine(costDeptNum)) {
+                openToast('请先选择部门',2000,1); return;
+            }
+            if (!isDefine(amount)) {
+                openToast('请填写报销金额',2000,1); return;
+            }
+            AJAX({
+                data:{
+                    method: "saveComputerAccount",
+                    bizAccountBill: {
+                        "biller": getLocVal('userName'),          // 制单人编码
+                        "paymentType": selectedNum,           // 收款人账号
+                        "cause": cause,                                    // 事由
+                        "computerApplicationBillNum": computerApplicationBillNum, // 电脑申请单编码
+                        "computerAccountBillNum": '',           // 电脑报销单编码
+                        "companyNum": companyNum,         // 公司编码
+                        "costDeptNum": costDeptNum,         // 部门编码
+                        "isSubmit": isSubmit,                           // 是否提交 1-是 0-否
+                        "amount": amount,                              // 报销金额
+                        "totalAmout":totalAmout,                   // 累计金额
+                        "accAccountNum":accountBank.payeeAccount,           // 收款账号
+                    }
+                },
+                success: function(data){
+                    if(data.code == 200){
+                        if (isSubmit == 0) {
+                            $popup({
+                                tpl:'./tpl/alert.html',
+                                title:'保存成功',
+                                content:'请到“个人中心/我的报销/未发K2”</br>修改或者提交',
+                                buttons:['<div class="tc-main-blue">确定</div>'],
+                                buttonCallBack:function(index,$alertContainer,e){   
+                                    // console.log(e);
+                                }
+                            });
+                        } else {
+                            openNewWin('send_k2');
+                        }
+                        
+                    }
+                }
+            })
+        }
+        
+        $('.baoxiao-jine').on('keyup change',function(){
+            var val = inputManger.getNum($(this).val());
+            $(this).val(val);
+            console.log(val);
+            if(val > 150){
+                $(this).addClass('tc-warn').parent().addClass('bor-c-warn');
+            }else{
+                $(this).removeClass('tc-warn').parent().removeClass('bor-c-warn');
+            }
+        })
+       /**
+        * 更多
+        */
+        appcan.button('#more','btn-act',function(){
+            $(this).find('.icon-arrow-bot-act').toggleClass('rotate-180');
+            $('#more-baoxiao').toggleClass('hide');
+        })
+
+        /**
+        * 保存
+        */
+        appcan.button('#save','btn-act',function(){
+            $popup({
+                tpl:'./tpl/alert.html',
+                title:'保存成功',
+                content:'请到“个人中心/我的报销/未发K2”</br>修改或者提交',
+                buttons:['<div class="tc-main-blue">确定</div>'],
+                buttonCallBack:function(index,$alertContainer,e){   
+                    console.log(e);
+                }
+            });
+        })
+        /**
+        * 发起K2
+        */
+       appcan.button('#sendK2','btn-act',function(){
+            $popup({
+                tpl:'./tpl/alert.html',
+                title:'是否要发起K2 ?',
+                content:'发起K2后单据内容将不允许再修改，如需修改则需废弃重新填写。',
+                buttons:['否','<div class="tc-main-blue">是</div>'],
+                buttonCallBack:function(index,$alertContainer,e){   
+                    if(index == 1){
+                        openNewWin('send_k2');
+                    }
+                }
+            });
+        })
+    </script>
+</html>

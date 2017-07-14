@@ -36,12 +36,18 @@ function AJAX(obj){
     //正式
     var baseUrl = 'http://10.0.5.164:6888/ormrpc/RestServer';
     //var baseUrl = 'http://154i277l07.51mypc.cn:14562/userappapi/';
+    var $http;
+    if (isAndroid) {
+        $http = appcan.request.ajax
+    } else {
+        $http = $.ajax
+    }
     appcan.request.ajax({
         url : (baseUrl+(obj.url?obj.url:'')),
         data : (obj.data?obj.data:''),
         type : (obj.type?obj.type:'GET'),
-        contentType: (obj.contentType?obj.contentType:false),
-        timeout: 8000,
+        contentType: (obj.contentType?obj.contentType:'application/json;charset=utf-8'),
+        // timeout: 10000,
         dataType : 'json',
         success : function(data, status, requestCode, response, xhr){
             uexWindow.closeToast();
@@ -92,8 +98,7 @@ function $popup(obj){
     template.config("escape", false);//art  
     var self = this;
     LoadTplByUrl(obj.tpl?obj.tpl:'tpl/alert.html',function(tpl){
-       //var render = template.compile(tpl);
-        //var html = render(obj);
+        uescript('','openMask(0.6)');
         $('body').append(template.compile(tpl)(obj));
         $('.pop-container').on('touchmove',function(e){
             e.stopPropagation();
@@ -103,6 +108,7 @@ function $popup(obj){
             var $this = $(this);
             var index = $this.index();
             if(!$this.attr('data-close')){
+                uescript('','closeMask()');
                 closePop($this);
             }
             obj.buttonCallBack(index,e);
@@ -698,6 +704,55 @@ function saveImgCache(ele, url_arr) {
         option.element = $this;
         cache.run(option);
     };
+}
+appcan.button = function(ele,css,cb){
+    var startX;
+    var startY;
+    var isCancel = false;
+    var $ele = $(ele);
+    var hasTouch = ('ontouchstart' in window);
+    if (hasTouch) {
+        $ele.on('touchstart',function(e){
+            var touch = e.touches[0];
+            startX = touch.pageX;
+            startY = touch.pageY;
+            $(this).addClass(css);
+            isCancel = false;
+        })
+        $ele.on('touchmove',function(e){
+            var touch = e.touches[0];
+            if (Math.abs(touch.pageX - startX) > 10 || Math.abs(touch.pageY - startY) > 10) {
+               $(this).removeClass(css);
+               isCancel = true;
+            }
+        })
+        $ele.on('touchend',function(e){
+            $(this).removeClass(css);
+            if (!isCancel) {
+               if (cb) {
+                   cb.apply(this)
+               }
+            }
+        })
+    } else {
+        $ele.on('mousedown',function(e){
+            startX = e.pageX;
+            startY = e.pageY;
+            $(this).addClass(css);
+            isCancel = false;
+        })
+        $ele.on('mouseup',function(e){
+            $(this).removeClass(css);
+            if (Math.abs(e.pageX - startX) > 10 || Math.abs(e.pageY - startY) > 10) {
+               isCancel = true;
+            }
+           if (!isCancel) {
+               if (cb) {
+                   cb.apply(this)
+               }
+           }
+        })
+    }
 }
 /**
  * 滑到底部加载

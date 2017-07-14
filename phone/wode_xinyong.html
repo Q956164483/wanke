@@ -23,11 +23,10 @@
             canvas {
                 background-color:rgba(0,0,0,0);
                 margin:1em auto;
-                border:1px solid red;
                 margin-bottom:0;
             }
         </style>
-    </head>
+    <script src="js/remChange.js"></script></head>
     <body class="" ontouchstart>
         <div class="bc-bg" tabindex="0" data-control="PAGE" id="Page">
             <div class="uh bc-sixiang ubb bor-ce0e0e0 pad-b22" data-control="HEADER" id="Header">
@@ -104,11 +103,6 @@
                 </div>
             </div>
         </div>
-        <div class="ub ub-fh bc-fff ubt bor-ce0e0e0 h-96" data-control="FOOTER">
-                <div id="submit" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 bc-main-blue tc-fff">
-                    确定
-                </div>
-        </div>
         <script src="js/appcan.concat.js"></script>
         <script src="js/common/artTemplate.js"></script>
         <script src="js/tpl.js"></script>
@@ -126,7 +120,9 @@
             'margin-top':$('#Header').offset().height-$('.h-header').offset().height+'px'
         })
     });
-    
+     appcan.button("#nav-left", "btn-act",function(){
+        winClose(-1);
+    });
     function initCanvas(scale,obj,level){
         var canvas = document.getElementById('canvas');
         canvas.width = 400*scale;
@@ -159,7 +155,7 @@
     
             ctx.save();
             ctx.beginPath();
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 10*scale;
             ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
             ctx.arc(0, 0, radius, 0, angle, false);
             ctx.stroke();

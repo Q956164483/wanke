@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/appcan.icon.css">
         <link rel="stylesheet" href="css/appcan.control.css">
         <link rel="stylesheet" href="css/common.css">
-    </head>
+    <script src="js/remChange.js"></script></head>
     <body class="" ontouchstart>
         <div class="bc-bg" tabindex="0" data-control="PAGE" id="Page">
             <div class="uh bc-head ubb bor-ce0e0e0 ub ub-ver" data-control="HEADER" id="Header">
@@ -98,6 +98,9 @@
             getLoc();
             getCsDep();
         });
+        $('#ScrollContent').on('touchmove',function(){
+            $('#search').trigger('blur')
+        })
         $('#search').on('focus',function(){
             $(this).parent().parent().find('.search-tips').addClass('search-tips-move').find('.placeholder').html('');
         })
@@ -163,7 +166,7 @@
                     };
                     saveLoc(baoxiao_bumen);
                     setLocVal('baoxiao_bumen',json2str(baoxiao_bumen));
-                    uescript(pageFrom,'UPDATEBM()');
+                    ueppscript(pageFrom,'content','UPDATEBM()');
                     winClose(-1);
                 }
             });

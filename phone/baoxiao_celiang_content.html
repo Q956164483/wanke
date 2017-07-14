@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/animate.min.css">
+        <link rel="stylesheet" href="css/common.css">
+    <script src="js/remChange.js"></script></head>
+    <body class="ub ub-ver bc-bg ub-fh" ontouchstart>
+        <div class="ub ub-ver bc-fff mag-t32">
+            <div class="line-com ub ub-ac ubb bor-ce0e0e0">
+                <div class="tc-000">预算归属日期</div>
+                <div class="ub-f1"></div>
+                <input id="datePicker" class="fon-s28 tc-999 tx-r"  readonly type="text" value="" placeholder="" />
+                <div class="icon-arrow-right ub-img7"> </div>
+            </div>
+            <div class="line-com ub ub-ac ubb bor-ce0e0e0">
+                <div class="tc-000">报销金额<span class="tc-f05050">*</span></div>
+                <div class="ub-f1"></div>
+                <input id="amount" class="fon-s28 tc-999 tx-r baoxiao-jine" data-max="150"  type="tel" placeholder="最多可报150元" />
+                <div class="tips-jine fon-s28 uhide">已超额度请重新填写</div>
+                <div class="icon-arrow-right ub-img7"> </div>
+            </div>
+            <div class="line-com ub ub-ac">
+                <div class="tc-000">事由</div>
+                <div class="ub-f1"></div>
+                <input id="cause" class="fon-s28 tc-bbb tx-r" readonly value="车辆费" placeholder="" />
+            </div>
+        </div>
+        
+        <div class="ub ub-ver bc-fff mag-t32 h-line-baxiao of-y-h" id="more">
+            <div class="line-com ub ub-ac more tc-main-blue">
+                <div class="">更多</div>
+                <div class="ub-f1"></div>
+                <div class="icon-arrow-bot-act ub-img7 transition-0_5"></div>
+            </div>
+         </div>
+         <div class="bc-fff uhide animated fadeIn" id="more-baoxiao">   
+            <div class="line-com ub ub-ac ubt bor-ce0e0e0 ">
+                <div class="tc-000">报销人</div>
+                <div class="ub-f1"></div>
+                <input id="userName" class="fon-s28 tc-bbb tx-r" readonly value="" />
+            </div>
+            <div class="line-com ub ub-ac ubt bor-ce0e0e0 baoxiao-gongsi">
+                <div class="tc-000 baoxiao_gongsi">报销公司</div>
+                <div class="fon-s28 date gongsi ut-s ub-f1 tx-r">请选择公司</div>
+                <div class="icon-arrow-right ub-img7"> </div>
+            </div>
+            <div class="line-com ub ub-ac ubt bor-ce0e0e0 baoxiao-bumen">
+                <div class="tc-000 baoxiao_bumen">报销部门</div>
+                <div class="ub-f1"></div>
+                <div class="fon-s28 date bumen">请选择部门</div>
+                <div class="icon-arrow-right ub-img7"> </div>
+            </div>
+            <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                <div class="tc-000">费用类型</div>
+                <div class="ub-f1"></div>
+                <div class="fon-s28 tc-bbb ">职员车辆费（有车）</div>
+            </div>
+            <div class="ub ub-ac  ubt bor-ce0e0e0 mag-l28">
+                <div class="tc-000 mag-t32 ">费用说明</div>
+            </div>
+            <div class="mag-l28 pad-r28 mag-t32 ub  ub -ver bor-ce0e0e0 ub-ac pad-b22">
+                <textarea id="expense" class="fon-s28 ub ub-f1 tc-999 baoxiao-suomin"  placeholder="费用说明" maxlength="120" onpropertychange="this.style.height = this.scrollHeight + 'px';" oninput="this.style.height = this.scrollHeight + 'px';"></textarea>
+                <div class="tips "></div>
+            </div>
+            <div class="line-com ub ub-ac ubt bor-ce0e0e0">
+                <div class="tc-000">收款人账号</div>
+                <div class="ub-f1"></div>
+                <input id="receiveAccount" class="fon-s28 tc-bbb  tx-r" readonly value="" />
+            </div>
+        </div>
+        <div class="h-96"></div>
+        <div class="ub ub-fh bc-fff ubt bor-ce0e0e0 h-96" data-control="FOOTER">
+                <div id="save" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 tc-main-blue">
+                    保存
+                </div>
+                <div id="sendK2" class="ub-f1 ub-fh ub ub-pc ub-ac fon-s36 bc-main-blue tc-fff">
+                    发起K2
+                </div>
+        </div>
+        <script src="js/common/appcan.js"></script>
+        <script src="js/common/appcan.control.js"></script>
+        <script src="js/common/artTemplate.js"></script>
+        <script src="js/tpl.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            initUserAccount();
+            initDatePicker($('#datePicker'));
+        });
+        
+        function back(){
+            $popup({
+                tpl:'tpl/alert.html',
+                title:'确定放弃当前内容？',
+                content:'你填写的内容还未保存',
+                buttons:['取消','<div class="tc-main-blue">确定</div>'],
+                buttonCallBack:function(index,e){   
+                    if(index == 1){
+                        uescript('','winClose(-1)');
+                    }
+                }
+            });
+        }
+        /**
+         * 报销金额输入控制
+         */
+        $('.amount').on('keyup change',function(){
+            var $ipt = $(this);
+            var val = inputManger.getNum($ipt.val());
+            var max = +$ipt.attr('data-max');
+            $ipt.val(val);
+            if(val > max){
+                $ipt.val('').attr('placeholder','').parent().addClass('bor-c-warn').find('.tips-jine').removeClass('uhide').click(function(){
+                    $ipt.focus()
+                })
+            }else{
+                $ipt.removeClass('tc-warn').attr('placeholder','最多可报'+max+'元').parent().removeClass('bor-c-warn').find('.tips-jine').addClass('uhide')
+            }
+        })
+        /**
+         * 选择报销公司
+         */
+        appcan.button(".baoxiao-gongsi", "btn-act",function(){
+            setLocVal('pageFrom','baoxiao_celiang');
+            openNewWin('baoxiao_gongsi');
+        });
+        /**
+         * 选择报销部门
+         */
+        appcan.button(".baoxiao-bumen", "btn-act",function(){
+            var companyNumber = $('.gongsi').attr('data-num');
+            if (!isDefine(companyNumber)) {
+                openToast('请先选择公司',2000,1);
+                return;
+            }
+            setLocVal('companyNumber',companyNumber);
+            setLocVal('pageFrom','baoxiao_celiang');
+            openNewWin('baoxiao_bumen');
+        });
+        
+        appcan.button('#more','btn-act',function(){
+            $(this).find('.icon-arrow-bot-act').toggleClass('rotate-180');
+            $('#more-baoxiao').toggleClass('uhide');
+        })
+        /**
+         * 冲借款
+         */
+        appcan.button('.baoxiao-congjiekuan','btn-act',function(){
+            openNewWin('baoxiao_congjiekuan')
+        })
+        function saveBizAccountBills(isSubmit) {
+            openToast('请求中...');
+            var amount = $('#amount').val();
+            var cause = $('#cause').val();
+            var companyNum = $('.gongsi').attr('data-num');
+            var costDeptNum = $('.bumen').attr('data-num');
+            var expenseID = 'xxx';
+            var expense = $('#expense').val();
+            var budgetDate = $('#datePicker').val();
+            if (!isDefine(companyNum)) {
+                openToast('请先选择公司',2000,1); return;
+            }
+            if (!isDefine(costDeptNum)) {
+                openToast('请先选择部门',2000,1); return;
+            }
+            if (!isDefine(expenseID)) {
+                openToast('请选择费用类型',2000,1); return;
+            }
+            if (!isDefine(amount)) {
+                openToast('请填写报销金额',2000,1); return;
+            }
+            AJAX({
+                data:{
+                    method: "saveBizAccountBills",
+                    bizAccountBill: {
+                        "amount": amount,                              // 报销金额
+                        "isSubmit": isSubmit,                           // 是否提交 1-是 0-否
+                        "biller": getLocVal('userNum'),          // 制单人编码
+                        "cause": cause,                                    // 事由
+                        "bizAccountNum": "",                          // 费用报销单编码
+                        "companyNum": companyNum,         // 公司编码
+                        "costDeptNum": costDeptNum,         // 部门编码
+                        "expenseID": expenseID,                     // 费用类型id
+                        "amountStriked": "",                            // 冲借款金额
+                        "realAmount":"",                                  // 实付金额
+                        "budgetDate": budgetDate,                // 预算归属日期(yyyy-MM-dd)
+                        "expense": expense,                            // 费用说明
+                        "receiveAccount": accountBank.payeeAccount    // 收款人账号
+                    }
+                },
+                success: function(data){
+                    if(data.code == 200){
+                        if (isSubmit == 0) {
+                            $popup({
+                                tpl:'./tpl/alert.html',
+                                title:'保存成功',
+                                content:'请到“个人中心/我的报销/未发K2”</br>修改或者提交',
+                                buttons:['<div class="tc-main-blue">确定</div>'],
+                                buttonCallBack:function(index,$alertContainer,e){   
+                                    // console.log(e);
+                                }
+                            });
+                        } else {
+                            openNewWin('send_k2');
+                        }
+                        
+                    }
+                }
+            })
+            
+        }
+        /**
+        * 保存
+        */
+        appcan.button('#save','btn-act',function(){
+            saveBizAccountBills(0)
+        })
+        /**
+        * 发起K2
+        */
+       appcan.button('#sendK2','btn-act',function(){
+            $popup({
+                tpl:'tpl/alert.html',
+                title:'是否要发起K2 ?',
+                content:'发起K2后单据内容将不允许再修改，如需修改则需废弃重新填写。',
+                buttons:['否','<div class="tc-main-blue">是</div>'],
+                buttonCallBack:function(index,e){   
+                    if(index == 1){
+                        saveBizAccountBills(1)
+                    }
+                }
+            });
+        })
+    </script>
+</html>
